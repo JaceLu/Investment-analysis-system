@@ -1,0 +1,57 @@
+﻿<div class="zqui-tray">
+    <div class="zqui-tray__cell zqui-tray__cell_left zqui-tray__cell_lg">
+        <div class="zqui-roll" style="height:558px;overflow:auto;">
+            <div class="modalDeptTree"></div>
+        </div>
+    </div>
+    <div class="zqui-tray__cell">
+        <div class="zqui-p_md">
+            <div class="zqui-table-toolbar toolbar">
+                <div class="zqui-filter">
+                    <div class="zqui-filter__item">
+                        <div class="zqui-input-group">
+                            <input class="zqui-input-group__input" name="key" placeholder="姓名搜索"><a class="zqui-input-group__btn btnQuery"><i class="icon icon-search"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="zqui-table zqui-table_border">
+                <thead></thead>
+                <tbody></tbody>
+            </table>
+            <div class="zqui-table-pages pages"></div>
+        </div>
+    </div>
+</div>
+<div class="zqui-box">
+    <div class="zqui-box__hd">
+        <div class="zqui-caption">
+            已选择人员&nbsp;&nbsp;<small class="zqui-text_gray">点击人员卡片删除组员</small>
+        </div>
+    </div>
+    <div class="zqui-box__bd">
+        <div class="zqui-card-wrap selected"></div>
+    </div>
+</div>
+<script type="text/x-jsrender" id="selectedTmpl">
+    <a class="zqui-card zqui-card_user">
+        <div class="zqui-card-userpic">
+            <img src="{{>UserIcon?UserIcon:"/Content/img/default.png"}}">
+        </div>
+        <div class="zqui-card-username">
+            {{>UserName}}
+        </div>
+        <div class="zqui-card-userjob">
+            {{>PrimaryTitle.Name}}
+        </div>
+        <div class="zqui-card__delete btnRemove">
+            <i class="icon icon-trash zqui-text_danger"></i>
+        </div>
+    </a>
+</script>
+<script type="text/x-jsrender" id="tagTmpl">
+    <span class="zqui-tag zqui-tag_default tag">
+        {{>UserName}}
+        <span class="zqui-remove btnRemoveTag" data-id={{>UserId}}>×</span>
+    </span>
+</script>

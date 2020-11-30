@@ -1,0 +1,27 @@
+<div class="zqui-tips_text">
+    {{if !IsSuccess}}
+    <div class="zqui-alert zqui-alert_danger">
+        <div class="zqui-alert__hd">
+            <i class="icon icon-exclamation-circle"></i>
+        </div>
+        <div class="zqui-alert__bd">
+            <p>文件导入失败</p>
+        </div>
+
+    </div>
+    {{else}}
+    <div class="zqui-alert zqui-alert_success">
+        <div class="zqui-alert__hd">
+            <i class="icon icon-exclamation-circle"></i>
+        </div>
+        <div class="zqui-alert__bd">
+            <p>共{{:Data.TotalRows}}条数据，本次导入{{:Data.Count}}条记录</p>
+           {{if Data.ErrorRows.length>0}} <p>错误信息</p>{{/if}}
+            {{for Data.ErrorRows}}
+            <p>第{{:Key}}行：{{:Value}}</p>
+            {{/for}} 
+        </div>
+
+    </div>
+    {{/if}}
+</div>

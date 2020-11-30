@@ -1,0 +1,14 @@
+﻿@{
+    var start = (!ViewData.ContainsKey("IsShowLabel") || !((bool)ViewData["IsShowLabel"])) ? "开始日期" : @ViewData["label"] + "开始日期";
+    var end = (!ViewData.ContainsKey("IsShowLabel") || !((bool)ViewData["IsShowLabel"])) ? "结束日期" : @ViewData["label"] + "结束日期";
+}
+<div class="zqui-filter__item">
+    <div class="zqui-filter__element">
+        <div class="zqui-input-time selectMode dateSwitch" data-init="false">
+            <input class="zqui-form__input zqui-input_sm date" type="text" name="dayStart" placeholder="@start" readonly=""/>
+            <span class="zqui-input-addon"> ~ </span>
+            <input class="zqui-form__input zqui-input_sm date" type="text" name="dayEnd" placeholder="@end" readonly=""/>
+            <i class="icon icon-calendar"></i>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,144 @@
+[
+  {
+    "ItemId": "77e0c5036d084a53baf4109b458b3172",
+    "ItemName": "K3基础信息",
+    "ClassName": "icon icon-cog",
+    "SubItems": [
+      {
+        "ClassName": "fa fa-wrench ",
+        "ItemId": "6725612E-BF60-4032-8D1B-6559C052D524",
+        "ItemName": "物料明细",
+        "Url": "/K3/Product"
+      },
+      {
+        "ClassName": "icon icon-undo ",
+        "ItemId": "e90f8185-7562-4271-83a8-c5b1b0e2df44",
+        "ItemName": "仓库列表",
+        "Url": "/K3/Stock"
+      },
+      {
+        "ClassName": "icon icon-undo ",
+        "ItemId": "4AC99053-DAEE-4090-AA8F-F829A5D9BD06",
+        "ItemName": "部门管理",
+        "Url": "/K3/Department"
+      },
+      {
+        "ClassName": "icon icon-line-chart",
+        "ItemId": "8345B303-7919-4D52-AB4C-B3EA731C04F2",
+        "ItemName": "供应商列表",
+        "Url": "/K3/Supplier"
+      },
+      {
+        "ClassName": "icon icon-align-left ",
+        "ItemId": "d4205522-a2de-45e8-addb-6b462ec163e2",
+        "ItemName": "采购订单",
+        "Url": "/K3/PurchaseOrder"
+      },
+      {
+        "ClassName": "icon icon-bar-chart",
+        "ItemId": "d89cc319-496e-431e-9689-0fc64c4e87bb",
+        "ItemName": "入库单",
+        "Url": "/K3/StockInOrder"
+      }
+    ]
+  },
+  {
+    "ItemId": "f7e0c5036d084a53baf4109b458b3172",
+    "ItemName": "订单查询",
+    "ClassName": "icon icon-cog",
+    "SubItems": [
+      {
+        "ClassName": "fa fa-wrench ",
+        "ItemId": "6725612E-BF60-4032-8D1B-6559C052D520",
+        "ItemName": "入库单查询",
+        "Url": "/StockInQuery"
+      },
+      {
+        "ClassName": "icon icon-undo ",
+        "ItemId": "7B2B1C1F-EFD2-408A-BF57-D89C0E7B05E9",
+        "ItemName": "出库单查询",
+        "Url": "/StockInOut/StockOut"
+      }
+    ]
+  },
+
+  {
+    "ClassName": "icon icon-line-chart",
+    "ItemId": "86F46C71-7400-4587-9DE2-BADE9B9A5BEB",
+    "ItemName": "二维码管理",
+    "Url": "/QrCode"
+  },
+  {
+    "ClassName": "icon icon-align-left ",
+    "ItemId": "AA87EA2C-5750-4D1B-959A-22151D600A1E",
+    "ItemName": "供货分箱",
+    "Url": "/SupplyList"
+  },
+  {
+    "ItemId": "b8b0d212d5894d7db24999252e23fad4",
+    "ItemName": "分箱贴码",
+    "ClassName": "icon icon-cog",
+    "SubItems": [
+      {
+        "ItemId": "34407d4df61d4607b6b5654e7ee5769f",
+        "ItemName": "仓库物料分箱",
+        "Url": "/Business/BinningQrCode"
+      },
+      {
+        "ItemId": "9c8d4100bcdc40fbb53f9be6fb091816",
+        "ItemName": "生产分箱",
+        "Url": "/Business/ProductionStockIn"
+      }
+    ]
+  },
+  {
+    "ItemId": "1E66FD77-2F83-48C6-9525-0332DD4DDFFB",
+    "ItemName": "新建计划",
+    "ClassName": "icon icon-inbox",
+    "SubItems": [
+      {
+        "ItemId": "114FFBA8-3FFC-4067-A7FD-8D0D10B3E5C9",
+        "ItemName": "领料计划单",
+        "Url": "/RequisitonMaterial"
+      },
+      {
+        "ItemId": "74E7421D-8A88-4551-8CD9-BC12D6F9BEC5",
+        "ItemName": "出货计划单",
+        "Url": "/Plan/ShipPlan"
+      }
+    ]
+  },
+
+  {
+    "ItemId": "F61DA552-A619-437B-BC95-05FB31F40AC6",
+    "ItemName": "系统管理",
+    "ClassName": "icon icon-cog",
+    "SubItems": [
+      {
+        "ClassName": "fa fa-wrench ",
+        "ItemId": "68E7ABB0-86F7-4701-A3D7-3C86760EB42C",
+        "ItemName": "系统设置",
+        "Url": "/admin/param"
+      },
+      {
+        "ClassName": "fa fa-wrench ",
+        "ItemId": "40A534B4-8A7E-417E-8F75-1BADAADD3819",
+        "ItemName": "微信设置",
+        "Url": "/admin/WechatParam"
+      },
+      {
+        "ClassName": "fa  fa-users",
+        "ItemId": "b773d6f2-ce65-44d8-8a93-e50f42f03beb",
+        "ItemName": "角色管理",
+        "Url": "/admin/role"
+      },
+      {
+        "ClassName": "icon icon-user",
+        "ItemId": "0006DE1F-767C-4FC1-9680-B24F0D227063",
+        "ItemName": "用户管理",
+        "Url": "/Admin/User"
+      }
+    ]
+  }
+
+]

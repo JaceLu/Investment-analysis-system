@@ -1,0 +1,63 @@
+﻿@page
+@{
+    var _ = new UserPage<Param>(ViewContext).SetPage("68E7ABB0-86F7-4701-A3D7-3C86760EB42C", "系统设置", "");
+}
+@section head{
+    <script src="~/Scripts/other/jquery.uploadifive.js"></script>
+    <script type="text/javascript">
+    $(function () {
+        var api = new Sail.ApiHelper("@_.ApiName");
+        $.get(api.GetApi("getParam"),
+            function (data) {
+                var Data = data.Data;
+                $.ItemBinder("#divDetail").SetObject(Data);
+                if (Data.Logo) {
+                    $("#LogoStr").attr("src", Data.Logo);
+                } else {
+                    $("#LogoStr").attr("src", "/Content/images/default-img.jpg");
+                }
+            });
+        $("#LogoTrigger").iconUpload();
+
+        $("#btnSave").click(function () {
+            if (!$("#divDetail").CheckValidation()) {
+                MsgBox.Error('请确认所有的必填项都已经填入')
+                return false;
+            }
+            $.post(api.GetApi("Save"), {
+                "": JSON.stringify($("#divDetail").GetJson())
+            }, function (data) {
+                ShowMessage(data);
+            });
+        });
+    })
+    </script>
+}
+<div id="divDetail">
+    <div class="zqui-portlet zqui-portlet_light">
+        <div class="zqui-portlet__hd">
+            <div class="zqui-caption zqui-title">
+                系统设置
+            </div>
+        </div>
+        <div class="zqui-portlet__bd">
+            <div>
+                <div>
+                    <input type="text" Element="@_.Create(x => x.Host)" />
+                    <input type="text" Element="@_.Create(x => x.SiteName)" />
+                    <formGroup Element="@_.Create(x => x.Logo)">
+                        <div class="zqui-upload zqui-upload_img">
+                            <img id="LogoStr" data-defaultvalue="/Content/images/default-img.jpg" />
+                        </div>
+                        <div class="zqui-upload zqui-m_0" id="LogoTrigger">
+                            <input type="hidden" class=" " id="Logo" value="" />
+                        </div>
+                    </formGroup>
+                </div>
+            </div>
+            <div class="zqui-actionbtn zqui-actionbtn_border">
+                <button class="zqui-btn zqui-btn_primary" id="btnSave"> 保存 </button>
+            </div>
+        </div>
+    </div>
+</div>

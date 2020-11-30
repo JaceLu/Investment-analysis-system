@@ -1,0 +1,86 @@
+﻿@page
+@{
+    var _ = new UserPage<User>(ViewContext).SetPage("0006DE1F-767C-4FC1-9680-B24F0D227063", "用户管理", "");
+}
+@section head{
+    <script type="text/javascript">
+     var tool;
+        $(function () {
+             var tool = new Sail.RazorPage("人员信息", "@_.ApiName", "@_.Id");
+            var api = new Sail.ApiHelper("@_.ApiName");
+
+            tool.CreatePage({
+                titles: ["登录账号", "用户名","角色", "状态", "操作"],
+                titleWidth: [0, 0, 120]
+            });
+
+            tool
+                .on("after.Add", function () {
+
+                })
+                //.on("after.Edit", function (sender, data) {
+                      
+                //})
+                .on("after.View", function (sender, data) {
+                 });
+            tool.Page.Query(1);
+
+             $('#toolbar').before($('#tips'));
+        });
+    </script>
+}
+<tmpl id="listTmpl">
+    <tr>
+        <td>
+            <a class="btnView">{{>LoginId}}</a>
+        </td>
+        <td>{{>UserName}}</td>
+        <td>{{>Role.RoleName}}</td>
+        <td>{{:~ToDisabledLabel(IsDisabled) }}</td>
+        <td>
+            {{if IsDisabled}}
+            <a class="zqui-text_success btnAct" data-act="enable" title="启用"><i class="icon icon-lg icon-play"></i></a>
+            {{else}}
+            <a class="zqui-text_primary m_r_10 btnEdit btnEdit" title="编辑"><i class="icon icon-lg icon-edit"></i></a>
+            <a class="zqui-text_warning btnAct" data-act="ResetPwd" title="重置密码"><i class="icon icon-lg  icon-refresh"></i></a>
+            <a class="zqui-text_danger btnAct" data-act="Disable" title="停用"><i class="icon icon-lg icon-stop"></i></a>
+            {{/if}}
+        </td>
+    </tr>
+</tmpl>
+<tmpl id="modalTmpl">
+    <div class="zqui-form">
+        <input type="text" Element="@(_.Create(v => v.LoginId))" />
+        <input type="text" Element="@(_.Create(v => v.UserName))" />
+        <select Element="@(_.Create(v => v.UserType))" options="@typeof(UserType).EnumList("请选择","-1").Where(x=>x.Value!=UserType.供应商.ToString())">
+            @*<option value="">请选择</option>*@
+        </select>
+        <select Element="@(_.Create(v => v.Role))" options="@UserRole.GetAllRole()">
+            <option value="">请选择</option>
+        </select>
+
+    </div>
+</tmpl>
+
+<tmpl id="viewTmpl">
+    <div Element="@(_.Create(v => v.LoginId))"></div>
+    <div Element="@(_.Create(v => v.UserName))"></div>
+    <div Element="@(_.Create(v => v.Role.RoleName))"></div>
+</tmpl>
+
+<div class="zqui-alert zqui-alert_danger" id="tips">
+    <div class="zqui-alert__hd">
+        <i class="icon icon-exclamation-circle"></i>
+    </div>
+    <div class="zqui-alert__bd">
+        温馨提示：【新增账号】根据员工的职能选择已经创建好的不同角色，然后新增账号，普通员工，不建议给与权限查看敏感信息和关键操作角色权限。超级管理员账号具有所有权限，请慎重给予负责任的员工管理。。
+    </div>
+</div>
+
+<toolbar key="输入用户名">
+    <select filter name="status" options="@(typeof(InfoStatus).EnumList("全部状态","-1"))"></select>
+</toolbar>
+
+<partial name="PageList" />
+<partial name="PageDetail" />
+

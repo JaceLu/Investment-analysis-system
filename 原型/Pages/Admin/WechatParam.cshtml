@@ -1,0 +1,64 @@
+﻿@page
+@{
+    var _ = new UserPage
+    <Param>(ViewContext).SetPage("40A534B4-8A7E-417E-8F75-1BADAADD3819", "微信设置", "");
+}
+
+<div id="divDetail">
+    <div class="zqui-portlet zqui-portlet_light">
+        <div class="zqui-portlet__hd">
+            <div class="zqui-caption zqui-title">
+                微信设置
+            </div>
+        </div>
+        <div class="zqui-portlet__bd">
+            <div>
+                <div>
+                    <input type="text" Element="@_.Create(x => x.AppId)" />
+                    <input type="text" Element="@_.Create(x => x.AppSecret)" />
+                    <input type="text" Element="@_.Create(x => x.WechatMPName)" />
+                    <formGroup Element="@(_.Create(x=>x.QrCode))">
+                        <div class="zqui-upload zqui-upload_img">
+                            <img id="QrCodeStr" data-defaultvalue="/Content/images/default-img.jpg" />
+                        </div>
+                        <div class="zqui-upload zqui-m_0" id="QrCodeTrigger">
+                            <input type="hidden" class="validate[required] " id="QrCode" value="" />
+                        </div>
+                    </formGroup>
+                </div>
+            </div>
+            <div class="zqui-actionbtn zqui-actionbtn_border">
+                <button class="zqui-btn zqui-btn_primary" id="btnSave"> 保存 </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/other/jquery.uploadifive.js"></script>
+<script type="text/javascript">
+    $(function () {
+           var api = new Sail.ApiHelper("@_.ApiName");
+        $.get(api.GetApi("getParam"),
+            function (data) {
+                var Data = data.Data;
+                $.ItemBinder("#divDetail").SetObject(Data);
+                if (Data.QrCode){
+                    $("#QrCodeStr").attr("src", Data.QrCode);
+                } else {
+                    $("#QrCodeStr").attr("src", "/Content/images/default-img.jpg");
+                }
+
+            });
+
+
+        $("#QrCodeTrigger").iconUpload();
+
+        $("#btnSave").click(function () {
+            if (!$("#divDetail").CheckValidation()) {
+                MsgBox.Error('请确认所有的必填项都已经填入')
+                return false;
+            }
+            $.post(api.GetApi("Save"), { "": JSON.stringify($("#divDetail").GetJson()) }, function (data) { ShowMessage(data); });
+        });
+    })
+
+</script>

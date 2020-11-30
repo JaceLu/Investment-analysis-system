@@ -1,0 +1,168 @@
+﻿@page
+@{
+    var _ = new UserPage<UserRole>(ViewContext).SetPage("b773d6f2-ce65-44d8-8a93-e50f42f03beb", "角色管理", "");
+}
+@section head{
+
+    <script>
+        var tool;
+        $(function () {
+               tool = new Sail.RazorPage("角色信息", "@_.ApiName", "@_.Id");
+
+            $('#toolbar').before($('#tips'));
+
+        tool.CreatePage({
+            titles: ["角色名称", "备注", { name: "操作", "class":"zqui-table-th_sm"}],
+            titleWidth: [0, 0, 120]
+        });
+
+        $("body").on("click", ".shrink", function () {
+            var $this =$(this) ;
+            $this.closest("li").find("ul").toggle();
+            $this.find("i").toggleClass("icon-caret-right icon-caret-down");
+        });
+
+
+        tool.PreSave = function(form, data) {
+            var modules = [];
+            $("input[type=checkbox][name=powers]:checked").each(function(i, o) {
+                console.log($.view(o).data);
+                var ss = $.view(o).data;
+                modules.push({ Key: ss.ItemId, Name: ss.ItemName });
+            });
+            data.Powers = modules;
+            return data;
+        };
+
+        function setValue(data,val) {
+            if (data) {
+                $.each(data,function (i, v) { $("#" + v.Key).prop('checked', val); });
+            }
+        }
+
+        tool.on("after.Edit",
+            function(form, data) {
+                console.log(data.Powers);
+
+                setValue(data.Powers, true);
+            });
+
+        $.get(tool.GetApi("menus"),function (data) {
+                if (data.IsSuccess) {
+                    $("#powersx").Link("#powerTmpl", data.Data);
+
+                    $("input[type=checkbox]").click(function () {
+                        var $this = $(this);
+
+                        var ss = $this.closest("li");
+                        if (ss.children("ul").length > 0) {
+                            ss.find(".zqui-checkbox input[type=checkbox]").prop("checked", $(this).prop("checked"));
+                        } else {
+                            if ($this.prop("checked")) {
+                                $this.closest("li").parents("li").each(function(i, o) {
+                                    $(o).children(".zqui-tree__content").find("input[type=checkbox]")
+                                        .prop("checked", true);
+                                });
+                            }
+                            else {
+                                $this.closest("li").parents("li").each(function(i, o) {
+                                    $(o).children(".zqui-tree__content").find("input[type=checkbox]")
+                                        .prop("checked", false);
+                                });
+
+                                $this.closest("li").siblings().each(function (i, o) {
+                                    if ($(o).children(".zqui-tree__content").find("input[type=checkbox]").prop("checked")) {
+                                        $(this).closest("li").parents("li").each(function(i, o) {
+                                            $(o).children(".zqui-tree__content").find("input[type=checkbox]").prop("checked", true);
+                                        });
+                                        return false;
+                                    }
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+
+
+
+        tool.Page.Query();
+        });
+    </script>
+    <tmpl id="listTmpl">
+        <tr>
+            <td>
+                <a class="btnEdit">{{>RoleName}}</a>
+            </td>
+            <td>{{>Memo}}</td>
+            <td>
+                <a class="zqui-text_primary m_r_10 btnEdit" title="修改" data-toggle="tooltip"><i class="icon icon-lg icon-edit"></i></a>
+                <a class="zqui-text_danger btnRemove" title="删除" data-toggle="tooltip"><i class="icon icon-lg icon-trash"></i></a>
+            </td>
+        </tr>
+    </tmpl>
+    <tmpl id="modalTmpl">
+        <div class="zqui-form">
+            <input type="text" Element="@(_.Create(v => v.RoleName))" class="unedit" />
+            <textarea Element="@(_.Create(v => v.Memo))"></textarea>
+            <div class="zqui-box">
+                <div class="zqui-box__hd">
+                    <div class="zqui-caption">人员权限列表</div>
+                </div>
+                <div class="zqui-box__bd zqui-p_md" id="powersx">
+                </div>
+            </div>
+
+        </div>
+    </tmpl>
+    <tmpl id="powerTmpl">
+        <ul class="zqui-tree">
+            <li class="zqui-tree__item active">
+                <div class="zqui-tree__content">
+                    <div class="zqui-tree__hd shrink">
+                        <i class="icon icon-caret-down "></i>
+                    </div>
+                    <div class="zqui-tree__bd">
+                        <span class="zqui-checkbox zqui-checkbox_uncertainty">
+                            <input type="checkbox" id="{{>ItemId}}" value="{{>ItemId}}" name="powers" />
+                            <span class="zqui-checkbox__inner"></span>
+                        </span>
+                        <i class="zqui-text_warning {{>ClassName}}"></i>{{>ItemName}}
+                    </div>
+                </div>
+                {{if SubItems.length>0}}
+                <ul class="zqui-tree">
+                    {{for SubItems}}
+                    <li class="zqui-tree__item">
+                        <div class="zqui-tree__content">
+                            <div class="zqui-tree__hd">
+                            </div>
+                            <div class="zqui-tree__bd">
+                                <span class="zqui-checkbox">
+                                    <input type="checkbox" id="{{>ItemId}}" value="{{>ItemId}}" name="powers" />
+                                    <span class="zqui-checkbox__inner"></span>
+                                </span>
+                                <i class="zqui-text_black "></i>{{>ItemName}}
+                            </div>
+                        </div>
+                    </li>
+                    {{/for}}
+                </ul>
+                {{/if}}
+            </li>
+        </ul>
+    </tmpl>
+}
+<div class="zqui-alert zqui-alert_danger" id="tips">
+    <div class="zqui-alert__hd">
+        <i class="icon icon-exclamation-circle"></i>
+    </div>
+    <div class="zqui-alert__bd">
+        温馨提示：【角色管理】主要是创建不同类型的角色账号，比如创建【财务角色】、【计调角色】、【销售员】，可以自定义角色，进行权限配置，不同角色登录本后台可以查看不同的内容。
+    </div>
+</div>
+<toolbar key="输入角色">
+</toolbar>
+
+<partial name="PageList" />
+<partial name="PageDetail" />

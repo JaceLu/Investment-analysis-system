@@ -1,0 +1,176 @@
+﻿/*修改原有框架样式*/
+a {
+    color: #5867dd;
+}
+
+body {
+    background: #f2f3f8;
+}
+
+.zqui-header {
+    border: none;
+    background-color: #fff;
+    -webkit-box-shadow: 0 10px 30px 0 rgba(82,63,105,.08);
+    box-shadow: 0 10px 30px 0 rgba(82,63,105,.08);
+}
+
+    .zqui-header .zqui-wrap {
+        padding: 0 1rem;
+    }
+
+    .zqui-header .zqui-logo {
+        float: left;
+        padding: .5rem 3rem .5rem 0;
+        font-size: 1.4rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    .zqui-header .zqui-header-menu > .zqui-header-menu__item.zqui-dropdown-user .zqui-dropdown__toggle .username {
+        color: #6c7293;
+    }
+
+.zqui-wrap {
+    width: 100%;
+}
+
+.zqui-container.zqui-wrap {
+    margin: .5rem auto;
+}
+
+.zqui-page-sidebar-fixed .zqui-container .zqui-content-wrap .zqui-content {
+    min-height: calc(100vh - 84px);
+}
+/*皮肤修改*/
+/*panel*/
+.zqui-panel_primary {
+    border-color: #b8daff;
+}
+
+    .zqui-panel_primary > .zqui-panel__hd {
+        color: #004085;
+        background-color: #cce5ff;
+    }
+
+.zqui-panel_success {
+    border-color: #c3e6cb;
+}
+
+    .zqui-panel_success > .zqui-panel__hd {
+        color: #155724;
+        background-color: #d4edda;
+    }
+
+.zqui-panel_info {
+    border-color: #bee5eb;
+}
+
+    .zqui-panel_info > .zqui-panel__hd {
+        color: #0c5460;
+        background-color: #d1ecf1;
+    }
+
+.zqui-panel_warning {
+    border-color: #ffeeba;
+}
+
+    .zqui-panel_warning > .zqui-panel__hd {
+        color: #856404;
+        background-color: #fff3cd;
+    }
+
+.zqui-panel_danger {
+    border-color: #f5c6cb;
+}
+
+    .zqui-panel_danger > .zqui-panel__hd {
+        color: #721c24;
+        background-color: #f8d7da;
+    }
+
+.zqui-btn_primary:hover {
+    color: #fff;
+    background-color: #384ad7;
+    border-color: #2e40d4;
+}
+
+.zqui-btn_primary:focus, .zqui-btn_primary.focus {
+    color: #fff;
+    background-color: #384ad7;
+    border-color: #2e40d4;
+}
+
+.zqui-panel .zqui-panel__hd .zqui-actions {
+    position: absolute;
+    right: .5rem;
+    top: .3rem;
+}
+/*form*/
+.zqui-input-date > .zqui-form__input {
+    width: 20rem;
+}
+
+.zqui-form__input:disabled, .zqui-form__input[readonly], .zqui-input-group__input:disabled, .zqui-input-group__input[readonly], input:disabled, input[readonly] {
+    background-color: #f5f6fc !important;
+    opacity: 1;
+}
+
+.zqui-table input, .zqui-table textarea, .zqui-table select {
+    padding: .1rem .25rem;
+    min-height: 1.4rem;
+    width: 100%;
+    border-width: 1px;
+    border-style: solid;
+}
+/*step*/
+.zqui-step-wrap .zqui-step-bg, .zqui-step-wrap .zqui-step-progress {
+    top: 2.2rem;
+    bottom: inherit;
+}
+
+.zqui-step .zqui-step__item .zqui-step__desc {
+    font-size: .7rem;
+}
+/*二维码列表*/
+.qrlist:after {
+    content: " ";
+    display: table;
+    clear: both;
+    zoom: 1;
+}
+
+.qrlist__item {
+    float: left;
+    width: 8rem;
+}
+
+.qrcode {
+    margin: .5rem;
+    padding: .5rem;
+    border: 1px solid #ebedf2;
+}
+
+.qrcode__pic {
+    text-align: center;
+}
+
+    .qrcode__pic img {
+        width: 100%;
+        text-align: center;
+    }
+
+.qrcode__title {
+    margin-top: .5rem;
+    text-align: center;
+    font-size: smaller;
+}
+
+.qrcode__desc {
+    font-size: smaller;
+    margin: .5rem 0;
+    line-height: 1.5;
+}
+
+.qrcode__btn {
+    max-width: 100%;
+}

@@ -1,0 +1,212 @@
+﻿@page
+@{
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>@Param.Default.SiteName</title>
+    <link rel="shortcut icon" href="~/Content/images/favicon.ico">
+    <link href="~/Content/site.min.css" rel="stylesheet" />
+    <link href="~/Content/css/login.css" rel="stylesheet" />
+    <script src="~/Scripts/site.min.js"></script>
+
+    <script type="text/javascript">
+        validationEngine.SetConfig({ formGroup: ".form-group" });
+        var app = {};
+        $(function () {
+            var api = new Sail.ApiHelper("user");
+            $("#Password").EnterToClick("#btnLogin")
+            $("#btnLogin").click(function () {
+                var data = $(".formDetail.login").GetJson();
+                $.post(api.GetApi("Login"), { "": JSON.stringify(data) })
+                    .done(function (res) {
+                        MsgBox.Show(res, "登录成功,即将跳转页面", function () {
+                            setTimeout(function () {
+                                window.location.href = "@UserLayout.Referer" || "/Index";
+                            }, 2000);
+                        });
+                    });
+            });
+
+            app.countDown = function (ele, seconds) {
+                var $ele = $(ele);
+                $ele.attr("disabled", true);
+                var text = seconds + " s";
+                $ele.html(text);
+
+                if (seconds === 0) {
+                    $ele.attr("disabled", false);
+                    $ele.html($ele.attr("title"));
+                }
+                else {
+                    setTimeout(function () {
+                        app.countDown(ele, --seconds);
+                    }, 997);
+                }
+            };
+
+            app.getCode = function (ele, seconds, phoneNumber) {
+                $.get(api.GetApi("VerifyCode"), { mobile: phoneNumber })
+                    .done(function (res) {
+                        MsgBox.Show(res, function () {
+                            app.countDown(ele, seconds);
+                        });
+                    });
+            };
+
+            $("body")
+                .on("click", "#forget", function () {
+                    $(".formDetail").ResetForm();
+                    $(".formDetail").hide();
+                    $(".formDetail.recover").show();
+                })
+                .on("click", "#remember", function () {
+                    $(".formDetail").ResetForm();
+                    $(".formDetail").hide();
+                    $(".formDetail.login").show();
+                })
+                .on("click", "#getCode", function () {
+                    var phoneNumber = $("[name=Phone]").val();
+                    if (!phoneNumber) {
+                        MsgBox.Error("请填写手机号码");
+                        return;
+                    }
+                    app.getCode(this, 60, phoneNumber);
+                })
+                .on("click", "#confirm", function () {
+                    if (!$(".formDetail.recover").CheckValidation()) {
+                        MsgBox.Error("请检查表单是否填写完整或正确");
+                        return;
+                    }
+                    var data = $(".formDetail.recover").GetJson(); 
+                    $.post(api.GetApi("ChangPassword"), { "": JSON.stringify(data) })
+                        .done(function (res) {
+                            MsgBox.Show(res, function () {
+                                $("#remember").trigger("click");
+                             });
+                        });
+                });
+
+        })
+    </script>
+</head>
+<body>
+    <!--[if lt  IE 9]>
+             <div style=" position: fixed;top: 0px;left: 0px;height:100%;width:100%;background: #000;z-index:10000">
+            <div style="height: 100%;margin: auto;position: relative;width: 840px;padding-top: 50px;z-index:10001">
+                <div style=" padding-top:20px;background-color:#fff;">
+                    <h2 style="text-align:center;font-size:24px;font-weight:bold;">很抱歉！您使用的浏览器版本过低，无法使用我们的系统，请升级后再试！</h2>
+                    <p style="text-align:center;font-size:18px;margin-top:20px;">建议使用以下浏览器或浏览版本的极速模式使用</p>
+                    <div style="width:840px;padding:0 20px;">
+                        <a href="/browser/ChromeStandaloneSetup.exe" style="float:left;padding:40px;text-align:center;text-decoration:none;" >
+                            <span><img src="/Content/images/google.png" style="width:100px;height:100px;padding:5px;" /></span>
+                            <p style="width:120px;text-align:center;margin-top:10px;">Google浏览器</p>
+                            <p style="width:120px;text-align:center;margin-top:10px;color:red;">（本地下载）</p>
+                        </a>
+
+                        <a href="http://chrome.360.cn/index.html" style="float:left;padding:40px;text-align:center;text-decoration:none;">
+                            <span><img src="/Content/images/360.png" style="width:100px;height:100px;padding:5px;" /></span>
+                            <p style="width:120px;text-align:center;margin-top:10px;">360极速浏览器</p>
+                            <p style="width:120px;text-align:center;margin-top:10px;color:red;">（强烈推荐）</p>
+                        </a>
+
+                        <a href="http://www.firefox.com.cn/" style="float:left;padding:40px;text-align:center;text-decoration:none;">
+                            <span><img src="/Content/images/huohu.png" style="width:100px;height:100px" /></span>
+                            <p style="width:120px;text-align:center;margin-top:10px;">火狐浏览器</p>
+                        </a>
+
+                        <a href="http://browser.qq.com/" style="float:left;padding:40px;text-decoration:none;">
+                            <span><img src="/Content/images/qq.png" style="width:100px;height:100px" /></span>
+                            <p style="width:120px;text-align:center;margin-top:10px;">QQ浏览器</p>
+
+                        </a>
+                    </div>
+                    <div style="clear: both;"></div>
+                    <p style="text-align:center;font-size:18px;margin-bottom:20px;">如果您当前已使用360极速或360安全浏览器仍然能看到本页，可能由于未打开极速模式。</p>
+                    <p style="text-align:center;padding-bottom:20px;"><a href="http://se.360.cn/v6/help/help5.html" style="text-decoration:none;">如何打开极速模式?</a></p>
+                </div>
+            </div>
+        </div>
+        <![endif]-->
+    <div class="login">
+        <div class="stack">
+            <div class="stack__item login__aside">
+                <div class="login__content formDetail login">
+                    <div class="login__logo">
+                        <img src="~/Content/images/logo@2x.png" />
+                    </div>
+                    <div class="login__title">
+                        欢迎用户登录
+                    </div>
+                    <div class="login__form">
+                        <div class="form-group">
+                            <input class="form-control" type="text" placeholder="账号" id="LoginId" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="password" placeholder="密码" id="Password" />
+                        </div>
+                    </div>
+                    <div class="login__actions">
+                        <a id="btnLogin" class="btn btn-block blue">登录</a>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <div class="login__content formDetail recover" style="display:none">
+                    <div class="login__logo">
+                        <img src="~/Content/images/logo@2x.png" />
+                    </div>
+                    <div class="login__title">
+                        忘记密码？
+                    </div>
+                    <div class="login__form">
+                        <div class="form-group">
+                            <input class="form-control validate[required]" type="text" placeholder="账号" name="LoginId" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control validate[required,custom[mobile]]" type="text" maxlength="11" placeholder="手机号码" name="Phone" />
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input class="form-control validate[required]" type="text" placeholder="验证码" name="Code" />
+                                <span class="input-group-btn">
+                                    <a id="getCode" class="btn btn-success" title="获取验证码">获取验证码</a>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control validate[required]" type="password" placeholder="密码" name="Password" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control validate[required]" type="password" placeholder="确认密码" name="RepeatPassword" />
+                        </div>
+                    </div>
+                    <div class="login__actions">
+                        <button class="btn btn-block blue" id="confirm">确认修改</button>
+                        <div class="pull-right">
+                            <a id="remember" class="forget-password">想起密码！</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="stack__item login_bg" style="background-image: url('Content/images/bg-6.jpg');">
+                <div class="login__welcome">
+                    全球海陆空极速报价
+                </div>
+                <div class="login__msg">
+                    普货、数码、果蔬、易碎品都可保
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</body>
+</html>

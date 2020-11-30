@@ -1,0 +1,21 @@
+﻿@media print {
+    .zqui-header, .zqui-sidebar, .zqui-breadcrumb-wrap, .zqui-actionbtn, .zqui-footer, .zqui-step-wrap {
+        display: none;
+    }
+
+    body {
+        background: #fff;
+    }
+
+    .zqui-container {
+        border: none;
+    }
+
+    .zqui-portlet__hd {
+        text-align: center;
+    }
+
+    .print__btn {
+        display: none;
+    }
+}

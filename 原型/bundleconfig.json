@@ -1,0 +1,42 @@
+﻿[
+  {
+    "outputFileName": "wwwroot/Content/manage.min.css",
+    "inputFiles": [
+      "wwwroot/Content/css/zqui.css",
+      "wwwroot/Content/css/wangEditor.css",
+      "wwwroot/Content/css/tooltip.css",
+      "wwwroot/Content/css/print.css",
+      "wwwroot/Content/css/Lamtip.css",
+      "wwwroot/Content/css/select2.min.css",
+      "wwwroot/Content/css/WdatePicker.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Content/site.min.css",
+    "inputFiles": [
+      "wwwroot/Content/css/bootstrap.min.css",
+      "wwwroot/Content/css/components.min.css",
+      "wwwroot/Content/css/owl.carousel.css",
+      "wwwroot/Content/css/webstyle.css",
+      "wwwroot/Content/css/WdatePicker.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Scripts/site.min.js",
+    "inputFiles": [
+      "wwwroot/Scripts/Base/jquery.min.js",
+      "wwwroot/Scripts/Base/jsviews.js",
+      "wwwroot/Scripts/Base/lodash.js",
+      "wwwroot/Scripts/Base/bootstrap.min.js",
+      "wwwroot/Scripts/other/wangEditor.js",
+      "wwwroot/Scripts/Base/jPlugin.js",
+      "wwwroot/Scripts/customs/Extends.js",
+      "wwwroot/Scripts/Base/select2.min.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": false
+    },
+    "sourceMap": true
+  }
+]

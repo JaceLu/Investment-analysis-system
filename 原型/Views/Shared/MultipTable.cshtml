@@ -1,0 +1,37 @@
+﻿
+<div class="zqui-panel zqui-panel_info">
+    <div class="zqui-panel__hd">
+        @(ViewData["MasterTitle"])
+    </div>
+    <div class="zqui-panel__bd">
+        <div class="zqui-form" id="MasterTable">
+        </div>
+    </div>
+</div>
+<div id="DetailTable">
+    @if ((bool)ViewData["IsInventory"])
+    {
+        <div class="zqui-panel zqui-panel_info">
+            <div class="zqui-panel__hd">
+                @(ViewData["InventoryTitle"])（共有：<b><span>@(ViewData["InventoryQty"])</span></b>个物料）
+            </div>
+            <div class="zqui-panel__bd MainTable">
+              
+            </div>
+        </div>
+    }
+    @if ((bool)ViewData["IsCode"])
+    {
+        <div class="zqui-panel zqui-panel_info" id="qrcodeDetail">
+            <div class="zqui-panel__hd">
+                @(ViewData["CodeTitle"])（共有：<b><span>@(ViewData["CodeQty"])</span></b>个）
+                <div class="zqui-actions">
+                    <button class="zqui-btn zqui-btn_sm zqui-btn_success">全部打印</button>
+                </div>
+            </div>
+            <div class="zqui-panel__bd">
+                <ul class="qrlist" id="qrCodeList"></ul>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,1409 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Lamtip</name>
+    </assembly>
+    <members>
+        <member name="T:Lamtip.apis.IconController">
+            <summary>
+            图片上传
+            </summary>
+        </member>
+        <member name="P:Lamtip.apis.IconController.UploadRoot">
+            <summary>
+            上传目录
+            </summary>
+        </member>
+        <member name="P:Lamtip.apis.IconController.UploadPre">
+            <summary>
+            缩略图目录
+            </summary>
+        </member>
+        <member name="M:Lamtip.apis.IconController.Uploaded(Microsoft.AspNetCore.Http.IFormFile,Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            上传图片
+            </summary>
+            <param name="file"></param>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Lamtip.apis.ParamController">
+            <summary>
+            参数
+            </summary>
+        </member>
+        <member name="M:Lamtip.apis.ParamController.GetParam">
+            <summary>
+            获取系统参数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Lamtip.apis.ParamController.Save(System.String)">
+            <summary>
+            修改系统参数
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Lamtip.apis.UserController">
+            <summary>
+            用户
+            </summary>
+        </member>
+        <member name="M:Lamtip.apis.UserController.BaseWhere(System.String)">
+            <summary>
+            条件过滤
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lamtip.apis.UserController.Login(System.String)">
+            <summary>
+            登录
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lamtip.apis.UserController.Logout">
+            <summary>
+            退出登陆
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Lamtip.apis.UserController.Enable(System.String)">
+            <summary>
+            启用用户
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lamtip.apis.UserController.Disable(System.String)">
+            <summary>
+            停用用户
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lamtip.apis.UserController.ResetPwd(System.String)">
+            <summary>
+            用户密码重置
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lamtip.apis.UserController.changePwd(System.String)">
+            <summary>
+            修改密码
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lamtip.apis.UserController.BeforeAction(Sail.Common.DataContext,Sail.Web.ControllerEvent,System.Object)">
+            <summary>
+            调用方法之前的调用
+            </summary>
+            <param name="db"></param>
+            <param name="e"></param>
+            <param name="o"></param>
+        </member>
+        <member name="M:Lamtip.apis.UserController.GetList(System.Int32,System.Int32,System.String,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="key"></param>
+            <param name="status"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Lamtip.apis.UserRoleController">
+            <summary>
+            角色权限
+            </summary>
+        </member>
+        <member name="M:Lamtip.apis.UserRoleController.BaseWhere(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lamtip.apis.UserRoleController.GetList(System.Int32,System.Int32,System.String)">
+            <summary>
+            过滤超级管理员
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lamtip.apis.UserRoleController.Menus">
+            <summary>
+            获取角色权限菜单
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Lamtip.ApiHelper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Lamtip.ApiHelper.MakeRequest(System.Net.Http.HttpMethod,Lamtip.UrlParam,System.Object,System.String,System.String,Lamtip.ParamType,System.Func{System.String,System.String,System.Net.Http.HttpRequestMessage,System.Collections.Generic.Dictionary{System.String,System.String}})">
+            <summary>
+            生成请求内容
+            </summary>
+            <param name="method"></param>
+            <param name="urlParam"></param>
+            <param name="requestBody"></param>
+            <param name="controller"></param>
+            <param name="action"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lamtip.ApiHelper.SendNormal(System.Net.Http.HttpMethod,Lamtip.UrlParam,System.Object,System.String,System.String,Lamtip.ParamType,System.Func{System.String,System.String,System.Net.Http.HttpRequestMessage,System.Collections.Generic.Dictionary{System.String,System.String}})">
+            <summary>
+            发送数据并返回(非AjaxResult对象)
+            </summary>
+            <param name="method"></param>
+            <param name="urlParam"></param>
+            <param name="requestBody"></param>
+            <param name="controller"></param>
+            <param name="action"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Lamtip.Code.Extension">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Lamtip.Code.Extension.ToPairList(System.Collections.Generic.IEnumerable{Lamtip.Model.IDict})">
+            <summary>
+            
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Lamtip.Code.IgnoreHistoryAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Lamtip.Code.ModelHistoryBase">
+            <summary>
+            Model属性变动记录
+            </summary>
+        </member>
+        <member name="P:Lamtip.Code.ModelHistoryBase.Details">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Lamtip.Code.ModelHistoryBase.Creater">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Lamtip.Code.ModelHistoryBase.CreateTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Lamtip.Code.PropHistory">
+            <summary>
+            属性变动记录
+            </summary>
+        </member>
+        <member name="P:Lamtip.Code.PropHistory.Name">
+            <summary>
+            字段名称
+            </summary>
+        </member>
+        <member name="P:Lamtip.Code.PropHistory.Porperty">
+            <summary>
+            属性名称
+            </summary>
+        </member>
+        <member name="P:Lamtip.Code.PropHistory.OldValue">
+            <summary>
+            旧值
+            </summary>
+        </member>
+        <member name="P:Lamtip.Code.PropHistory.NewValue">
+            <summary>
+            新值
+            </summary>
+        </member>
+        <member name="T:Lamtip.Code.TagHelperContextExtension">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Lamtip.Code.TagHelperContextExtension.HasAttr(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,System.String)">
+            <summary>
+            是否含指定有属性
+            </summary>
+            <param name="context"></param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Lamtip.Code.TagHelperOutputExtension">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Lamtip.Code.TagHelperOutputExtension.SetAttributes(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            设置属性
+            </summary>
+            <param name="output"></param>
+            <param name="attributes"></param>
+        </member>
+        <member name="T:Lamtip.Code.UserLayout">
+            <summary>
+            用户模板页
+            </summary>
+        </member>
+        <member name="P:Lamtip.Code.UserLayout.LoginUrl">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Lamtip.Code.UserLayout.IndexUrl">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Lamtip.Code.UserLayout.Menus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Lamtip.Code.UserLayout.LoadMenu">
+            <summary>
+            加载菜单
+            </summary>
+        </member>
+        <member name="P:Lamtip.Code.UserLayout.Referer">
+            <summary>
+            登陆后跳转路径
+            </summary>
+        </member>
+        <member name="T:Lamtip.Code.UserMenu">
+            <summary>
+            用户菜单
+            </summary>
+        </member>
+        <member name="P:Lamtip.Code.UserMenu.Menus">
+            <summary>
+            菜单列表
+            </summary>
+        </member>
+        <member name="M:Lamtip.Code.UserMenu.LoadAdminMenu(System.String,System.Func{System.String,System.String})">
+            <summary>
+            
+            </summary>
+            <param name="fileName"></param>
+            <param name="formatUrl"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Lamtip.Code.WechatLayout">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Lamtip.Code.WechatLayout.CurrentUser">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Lamtip.Code.WechatLayout.Menus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Lamtip.Code.WechatLayout._httpAccessor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Lamtip.Code.WechatLayout.UserAgent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Lamtip.Code.WechatLayout.IsInWechat">
+            <summary>
+            是否在微信中
+            </summary>
+        </member>
+        <member name="P:Lamtip.Code.WechatLayout.IsPcWechat">
+            <summary>
+            pc端微信
+            </summary>
+        </member>
+        <member name="M:Lamtip.Code.WechatLayout.#ctor">
+            <summary>
+            
+            </summary>
+            <param name="httpAccessor"></param>
+        </member>
+        <member name="P:Lamtip.Code.WechatLayout.timeStamp">
+            <summary>
+            时间戳
+            </summary>
+        </member>
+        <member name="P:Lamtip.Code.WechatLayout.nonceStr">
+            <summary>
+            随机字符串
+            </summary>
+        </member>
+        <member name="M:Lamtip.Code.WechatLayout.checkLogin">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Lamtip.Code.WechatLayout.beforeCheckLogin(Sail.Common.DataContext)">
+            <summary>
+            
+            </summary>
+            <param name="db"></param>
+        </member>
+        <member name="M:Lamtip.Code.WechatLayout.LoadMenu">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Lamtip.StringKeyPairs`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Lamtip.StringKeyPairs`1.#ctor(System.Collections.Generic.IComparer{System.String})">
+            <summary>
+            
+            </summary>
+            <param name="comparer"></param>
+        </member>
+        <member name="M:Lamtip.StringKeyPairs`1.#ctor(System.Collections.Generic.IDictionary{System.String,`0})">
+            <summary>
+            
+            </summary>
+            <param name="dictionary"></param>
+        </member>
+        <member name="M:Lamtip.StringKeyPairs`1.#ctor(System.Collections.Generic.IDictionary{System.String,`0},System.Collections.Generic.IComparer{System.String})">
+            <summary>
+            
+            </summary>
+            <param name="dictionary"></param>
+            <param name="comparer"></param>
+        </member>
+        <member name="M:Lamtip.StringKeyPairs`1.ToString(System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="separator"></param>
+            <param name="withEmptyValue"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Lamtip.UrlParam.Signature">
+            <summary>
+            签名
+            </summary>
+        </member>
+        <member name="T:Lamtip.Util">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Lamtip.Util.RunTran(Sail.Common.DataContext,System.Func{Sail.Common.DataContext,System.Threading.Tasks.Task})">
+            <summary>
+            
+            </summary>
+            <param name="db"></param>
+            <param name="act"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lamtip.Util.DBFuncAsync(System.Func{Sail.Common.DataContext,System.Threading.Tasks.Task},System.String)">
+            <summary>
+            
+            </summary>
+            <param name="action"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lamtip.Util.DBFuncAsync(System.Func{Sail.Common.DataContext,System.Threading.Tasks.Task{System.Object}},System.String)">
+            <summary>
+            
+            </summary>
+            <param name="action"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Lamtip.Model.BaseDict">
+            <summary>
+            字典基类
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.BaseDict.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.BaseDict.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.BaseDict.StatusStr">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="M:Lamtip.Model.BaseDict.ToKvPair">
+            <summary>
+            转成键值对
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Lamtip.Model.BaseDict.GetDict``1">
+            <summary>
+            获取所有字典
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Lamtip.Model.BaseDict.GetHashCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Lamtip.Model.BaseDict.Equals(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lamtip.Model.BaseDict.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Lamtip.Model.Dict">
+            <summary>
+            字典数据
+            </summary>
+        </member>
+        <member name="M:Lamtip.Model.Dict.ToView">
+            <summary>
+            转视图
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Lamtip.Model.DictView">
+            <summary>
+            字典视图
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.DictView.Id">
+            <summary>
+            字典id
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.DictView.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Lamtip.Model.DictView.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Lamtip.Model.FileDb">
+            <summary>
+            文件表
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.FileDb.FileDbId">
+            <summary>
+            文件ID
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.FileDb.FileName">
+            <summary>
+            文件名
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.FileDb.DisPlayName">
+            <summary>
+            显示文件名
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.FileDb.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.FileDb.FilePath">
+            <summary>
+            文件路径
+            </summary>
+        </member>
+        <member name="M:Lamtip.Model.FileDb.Equals(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lamtip.Model.FileDb.GetHashCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Lamtip.Model.Param">
+            <summary>
+            系统参数表
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.Param.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.Param.Host">
+            <summary>
+            域名
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.Param.Logo">
+            <summary>
+            Logo
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.Param.SmsAccount">
+            <summary>
+            短信平台账号
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.Param.SmsPassword">
+            <summary>
+            短信平台密码
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.Param.SmsSign">
+            <summary>
+            短信签名
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.Param.AppId">
+            <summary>
+            微信app id
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.Param.AppSecret">
+            <summary>
+            微信app secret
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.Param.Tel">
+            <summary>
+            联系电话
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.Param.ServerIp">
+            <summary>
+            服务器ip地址
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.Param.SubscribeQrCode">
+            <summary>
+            用户关注公众号的地址
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.Param.WechatMPName">
+            <summary>
+            微信公众号
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.Param.QrCode">
+            <summary>
+            微信公众号二维码
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.Param.SiteName">
+            <summary>
+            系统名称
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.Param.QQ">
+            <summary>
+            QQ
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.Param.ContactNumber">
+            <summary>
+            联系电话
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.Param.Address">
+            <summary>
+            拜访地址
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.Param.AboutUs">
+            <summary>
+            关于我们
+            </summary>
+        </member>
+        <member name="M:Lamtip.Model.Param.Get(Sail.Common.IDataContext)">
+            <summary>
+            获取系统参数
+            </summary>
+            <param name="db"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Lamtip.Model.Role">
+            <summary>
+            用户角色
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.Role.RoleName">
+            <summary>
+            角色名称
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.Role.Memo">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.Role.Powers">
+            <summary>
+            功能权限
+            </summary>
+        </member>
+        <member name="M:Lamtip.Model.Role.GetAllRole">
+            <summary>
+            读取全部角色
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Lamtip.Model.Role.BaseWhere(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lamtip.Model.Role.GetList(System.Int32,System.Int32,System.String,Sail.Common.DataContext)">
+            <summary>
+            过滤超级管理员
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="key"></param>
+            <param name="db"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lamtip.Model.Sequence.NextVal(Sail.Common.IDataContext,System.String)">
+            <summary>
+            获取下一个流水号,请在事务中使用……
+            </summary>
+            <param name="db"></param>
+            <param name="seqName">流水号名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Lamtip.Model.Sequence.NextNumber(Sail.Common.IDataContext,System.String)">
+            <summary>
+            直接获取下一个流水号
+            </summary>
+            <param name="db"></param>
+            <param name="companyId"></param>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Lamtip.Model.SortableInfo">
+            <summary>
+            可排序对象
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.SortableInfo.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.SortableInfo.OrderByNo">
+            <summary>
+            排序号
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.SortableInfo.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="T:Lamtip.Model.User">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.User.DefaultPassword">
+            <summary>
+            默认密码
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.User.UserId">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.User.LoginId">
+            <summary>
+            登录账号
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.User.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.User.Phone">
+            <summary>
+            注册手机
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.User.ContactNumber">
+            <summary>
+            联系电话
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.User.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.User.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.User.IsDisabled">
+            <summary>
+            是否已停用
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.User.IsRoot">
+            <summary>
+            是否企业根用户
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.User.Role">
+            <summary>
+            角色权限
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.User.WxOpenId">
+            <summary>
+            微信OpenId
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.User.HeadImg">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.User.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.User.UserType">
+            <summary>
+            用户身份
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.User.SupplierId">
+            <summary>
+            供应商Id
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.User.SupplierName">
+            <summary>
+            供应商名称
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.User.IsSuperAdmin">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Lamtip.Model.User.Subscribed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Lamtip.Model.User.IsHasPower(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="powerName"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Lamtip.Model.User.IsAutoLogin">
+            <summary>
+            当前自动登录的用户
+            </summary>
+        </member>
+        <member name="T:Lamtip.Model.UserType">
+            <summary>
+            用户身份
+            </summary>
+        </member>
+        <member name="T:Lamtip.Model.UserRole">
+            <summary>
+            角色权限
+            </summary>
+        </member>
+        <member name="M:Lamtip.Model.UserRole.GetAllRole">
+            <summary>
+            读取全部角色
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Lamtip.Model.IDict.ToKvPair">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Sail.Tags.CheckBoxTagHelper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.CheckBoxTagHelper.DefaultValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.CheckBoxTagHelper.DefaultText">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.CheckBoxTagHelper.Options">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Sail.Tags.CheckBoxTagHelper.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="output"></param>
+        </member>
+        <member name="T:Sail.Tags.DialogHelper">
+            <summary>
+            弹出层
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.DialogHelper.Title">
+            <summary>
+            弹出层标题
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.DialogHelper.OkTitle">
+            <summary>
+            确定按钮文字
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.DialogHelper.CancelTitle">
+            <summary>
+            取消按钮文字
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.DialogHelper.Size">
+            <summary>
+            尺寸
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.DialogHelper.DialogSetting">
+            <summary>
+            设置
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.DialogHelper.ExtendButtons">
+            <summary>
+            扩展按钮
+            </summary>
+        </member>
+        <member name="M:Sail.Tags.DialogHelper.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            处理
+            </summary>
+            <param name="context"></param>
+            <param name="output"></param>
+        </member>
+        <member name="T:Sail.Tags.DialogSetting">
+            <summary>
+            对话框设置
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.DialogSetting.Header">
+            <summary>
+            输出头
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.DialogSetting.Foot">
+            <summary>
+            输出脚步
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.DialogSetting.PreBody">
+            <summary>
+            前半截
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.DialogSetting.BodyClass">
+            <summary>
+            对话框体的class
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.DialogSetting.PostBody">
+            <summary>
+            后半截
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.DialogSetting.CancelButton">
+            <summary>
+            取消按钮
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.DialogSetting.OkButton">
+            <summary>
+            确定按钮
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.DialogSetting.CreateButton">
+            <summary>
+            生成按钮
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.DialogSetting.Size">
+            <summary>
+            对话框尺寸
+            </summary>
+        </member>
+        <member name="T:Sail.Tags.DialogSize">
+            <summary>
+            对话框尺寸
+            </summary>
+        </member>
+        <member name="F:Sail.Tags.DialogSize.Default">
+            <summary>
+            默认
+            </summary>
+        </member>
+        <member name="F:Sail.Tags.DialogSize.Small">
+            <summary>
+            小
+            </summary>
+        </member>
+        <member name="F:Sail.Tags.DialogSize.Middle">
+            <summary>
+            中
+            </summary>
+        </member>
+        <member name="F:Sail.Tags.DialogSize.Large">
+            <summary>
+            大
+            </summary>
+        </member>
+        <member name="F:Sail.Tags.DialogSize.FullScreen">
+            <summary>
+            全屏
+            </summary>
+        </member>
+        <member name="T:Sail.Tags.ElementTagHelper">
+            <summary>
+            添加element属性
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.ElementTagHelper.Element">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.ElementTagHelper.Setting">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.ElementTagHelper.IsMulti">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.ElementTagHelper.ExtendClass">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.ElementTagHelper.IsView">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.ElementTagHelper.HasTips">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.ElementTagHelper.HasLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.ElementTagHelper.DefaultValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.ElementTagHelper.DefaultText">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.ElementTagHelper.HasGroup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.ElementTagHelper.Options">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.ElementTagHelper.OptionMode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Sail.Tags.ElementTagHelper.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="output"></param>
+        </member>
+        <member name="T:Sail.Tags.FilterTagHelper">
+            <summary>
+            过滤
+            </summary>
+        </member>
+        <member name="M:Sail.Tags.FilterTagHelper.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="output"></param>
+        </member>
+        <member name="M:Sail.Tags.TagHelperExtentions.MergeAttribute(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttributeList,System.String,System.String)">
+            <summary>
+            合并属性
+            </summary>
+            <param name="list"></param>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Sail.Tags.TagHelperExtentions.MergeAttribute(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttributeList,System.String,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute)">
+            <summary>
+            合并属性
+            </summary>
+            <param name="list"></param>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Sail.Tags.TagHelperExtentions.RemoveAttribute(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttributeList,System.String)">
+            <summary>
+            移除属性
+            </summary>
+            <param name="list"></param>
+            <param name="name"></param>
+        </member>
+        <member name="T:Sail.Tags.FormGroupTagHelper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.FormGroupTagHelper.Element">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.FormGroupTagHelper.Setting">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.FormGroupTagHelper.IsMulti">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.FormGroupTagHelper.IsView">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.FormGroupTagHelper.ExtendClass">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.FormGroupTagHelper.HasGroup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.FormGroupTagHelper.HasTips">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.FormGroupTagHelper.HasLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Sail.Tags.FormGroupTagHelper.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="output"></param>
+        </member>
+        <member name="T:Sail.Tags.JsrenderTagHelper">
+            <summary>
+            JsViews模板
+            </summary>
+        </member>
+        <member name="T:Sail.Tags.RadioTagHelper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.RadioTagHelper.DefaultValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.RadioTagHelper.DefaultText">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.RadioTagHelper.Options">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Sail.Tags.TagHelperContextExtension">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Sail.Tags.TagHelperContextExtension.HasAttr(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,System.String)">
+            <summary>
+            是否含指定有属性
+            </summary>
+            <param name="context"></param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Sail.Tags.TagHelperOutputExtension">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Sail.Tags.TagHelperOutputExtension.SetAttributes(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            设置属性
+            </summary>
+            <param name="output"></param>
+            <param name="attributes"></param>
+        </member>
+        <member name="T:Sail.Tags.ToolbarTagHelper">
+            <summary>
+            工具栏
+            </summary>
+        </member>
+        <member name="T:Sail.Tags.UploadType">
+            <summary>
+            上传类型
+            </summary>
+        </member>
+        <member name="F:Sail.Tags.UploadType.单附件">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Sail.Tags.UploadType.多附件">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Sail.Tags.UploadType.单图片">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Sail.Tags.UploadType.多图片">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Sail.Tags.UpLoaderTagHelper">
+            <summary>
+            上传
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.UpLoaderTagHelper.Element">
+            <summary>
+            上传元素
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.UpLoaderTagHelper.DefaultValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.UpLoaderTagHelper.IsFileDb">
+            <summary>
+            是否关联文件数据库
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.UpLoaderTagHelper.Setting">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.UpLoaderTagHelper.Type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.UpLoaderTagHelper.Title">
+            <summary>
+            上传按钮名称
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.UpLoaderTagHelper.ExtendClass">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Sail.Tags.UploaderViewTagHelper">
+            <summary>
+            文件预览
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.UploaderViewTagHelper.Element">
+            <summary>
+            上传元素
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.UploaderViewTagHelper.IsFileDb">
+            <summary>
+            是否关联文件数据库
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.UploaderViewTagHelper.Setting">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.UploaderViewTagHelper.Type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.UploaderViewTagHelper.ExtendClass">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Sail.Tags.ZqBoxTagHelper">
+            <summary>
+            box结构
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.ZqBoxTagHelper.Title">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.ZqBoxTagHelper.HasMore">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.ZqBoxTagHelper.MoreText">
+            <summary>
+            /
+            </summary>
+        </member>
+        <member name="T:System.Web.HtmlElement">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:System.Web.HtmlElement.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:System.Web.HtmlElement.Class">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:System.Web.HtmlElement.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:System.Web.HtmlElement.InnertHtml">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:System.Web.HtmlElement.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:System.Web.HtmlElement.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <param name="class"></param>
+            <param name="name"></param>
+            <param name="innerHtml"></param>
+        </member>
+        <member name="M:System.Web.HtmlElement.ToAttributesString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

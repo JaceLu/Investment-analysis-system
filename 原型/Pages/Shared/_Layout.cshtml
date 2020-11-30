@@ -1,0 +1,173 @@
+﻿@{
+    var _ = new UserLayout();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>@Param.Default.SiteName</title>
+    <link rel="shortcut icon" href="~/Content/images/favicon.ico">
+    <link href="~/Content/manage.min.css" rel="stylesheet" />
+    <script src="~/Scripts/site.min.js"></script>
+    <script src="/Scripts/datepicker/WdatePicker.js"></script>
+    <script src="~/Scripts/other/owl.carousel.min.js"></script>
+    <link href="~/Content/fonts/font-awesome.min.css" rel="stylesheet" />
+    <script src="~/Scripts/select2/select2Ext.js"></script>
+
+    <style>
+
+        .uploadifive-queue {
+            display: none !important;
+        }
+        /******导航*******/
+        .zqui-header-fixed ~ .zqui-container {
+            margin-top: 4.5rem !important;
+        }
+        /*固钉*/
+        .tally {
+            width: 2rem;
+            position: fixed;
+            right: 2rem;
+            bottom: 2rem;
+            z-index: 301;
+        }
+
+        .tally__item {
+            position: relative;
+            float: left;
+            width: 2rem;
+            height: 2rem;
+            line-height: 2rem;
+            margin-bottom: .5rem;
+            background: #8accf5;
+            /*overflow: hidden;*/
+            display: block;
+            text-align: center;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+            .tally__item:hover {
+                background: #38a7ef;
+            }
+
+                .tally__item:hover .popover {
+                    display: block;
+                }
+
+        .tally__icon {
+            font-size: 1rem;
+            color: #fff;
+        }
+
+        .tally__item .popover {
+            display: none;
+            position: absolute;
+            right: 2.5rem;
+            top: 0;
+            width: 125px;
+            background: #fff;
+            /*border: 1px solid #ddd;*/
+            border-radius: .15rem;
+            color: #fff;
+            background: #38a7ef;
+        }
+
+        .popover__arrow {
+            top: 50%;
+            right: -4px;
+            -webkit-box-shadow: 3px -3px 7px rgba(0, 0, 0, 0.07);
+            box-shadow: 3px -3px 7px rgba(0, 0, 0,0.07);
+            -webkit-transform: translateY(-50%) rotate(45deg);
+            -ms-transform: translateY(-50%) rotate(45deg);
+            transform: translateY(-50%) rotate(45deg);
+            background: #38a7ef;
+            width: 7.07106781px;
+            height: 7.07106781px;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+            position: absolute;
+            display: block;
+            border-color: transparent;
+            border-style: solid;
+        }
+    </style>
+    <script>
+        $(function () {
+            $(".zqui-dropdown__toggle").click(function () {
+                $(this).closest(".zqui-dropdown").toggleClass("active");
+            });
+
+            $.SailConfig.PageContent = ".zqui-container";
+
+            validationEngine.SetConfig({ error: "zqui-has_error" });
+
+            MsgBox.SetConfig({
+                alertPrefix: "zqui-alert_",
+                container: '<div class="zqui-alert">\<div class="zqui-alert__hd"><i class="icon icon-exclamation-circle"></i></div>\<div class="zqui-alert__bd">\<p></p>\ </div>\</div>',
+                dismiss: '<div class="zqui-alert__ft">\<a class="zqui-close" data-dismiss="alert" aria-hidden="true"></a>\</div>'
+            });
+
+            Sail.modalTemplates = {
+                dialog: "<div class='zqui-modal modal' data-backdrop='static' role= 'dialog' >" +
+                    "<div class='zqui-modal__mask'></div>" +
+                    "<div class='zqui-modal__dialog modal-dialog' > " +
+                    "<div class='zqui-modal__content modal-content' > " +
+                    "<div class='zqui-modal__bd modal-body'> </div>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>",
+                header: "<div class='zqui-modal__hd modal-header'> " +
+                    "<div class='zqui-modal__title modal-title'></div>" +
+                    "<a class='zqui-close ' data-dismiss='modal' aria-hidden='true'>x</a>" +
+                    "</div>",
+                footer: "<div class='zqui-modal__ft modal-footer'></div>",
+                cancleButton:
+                    "<a class='zqui-btn btn zqui- btn_secondary zqui-btn_default default btnCancel' data-dismiss='modal' aria-hidden='true'>取消</a>",
+                okButton: '<button class="zqui-btn btn zqui-btn_primary btn-primary btnOk">确定</button>'
+            };
+
+            Sail.noDataTmpl = '<div class="zqui-nodata">\
+                                                                                                                                                                                                                                                                                                                                    <div class="zqui-nodata__tips">暂无数据</div>\
+                                                                                                                                                                                                                                                                                                                               </div>';
+
+            $(".zqui-menus__toggler").click(function () {
+                $("body").toggleClass("zqui-page-sidebar-closed");
+            });
+
+            $(window).resize(function () {
+                var windowHeight = $(window).height() - 90
+
+                $(".zqui-content.mainContent").css({ "min-height": windowHeight });
+
+                //$(".zqui-sidebar.mainMenu .zqui-menus").slimScroll({
+                //    height: windowHeight,
+                //    railVisible: true,
+                //});
+
+            }).trigger("resize");
+        });
+    </script>
+    @RenderSection("head", false)
+</head>
+<body class="zqui-page-sidebar-fixed">
+
+    @await Component.InvokeAsync("Layouts", new { model = _, type = LayoutsType.Header })
+    <div class="zqui-container zqui-wrap">
+        <div class="zqui-sidebar-wrap">
+            @await Component.InvokeAsync("Layouts", new { model = _, type = LayoutsType.MainMenu })
+        </div>
+        <div class="zqui-content-wrap">
+            <div class="zqui-content">
+
+                <div class="mainContent">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
