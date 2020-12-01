@@ -1,0 +1,115 @@
+﻿@page
+@{
+    var itemId = this.Request.Query["menuId"].ToString();
+
+    var _ = new AdminPage<Category>(ViewContext);
+    _.SetPage(itemId, "栏目管理", "");
+    var isCanAdd = !_.CanOperation(itemId);
+}
+
+<tmpl id="modalTmpl">
+    <input type="hidden" id="ParentName" />
+    <input type="text" Element="@(_.Create(x => x.Name))" />
+    <input type="text" Element="@(_.Create(x => x.Code))" />
+    <input type="text" Element="@(_.Create(x => x.OrderByNo))" />
+    <select Element="@(_.Create(x => x.PageCategory))" options="@typeof(PageCategory).EnumList()"></select>
+    <input type="text" Element="@(_.Create(x => x.VideoUrl))" />
+    <input Element="@(_.Create(x => x.ImgTitle))" />
+    <input Element="@(_.Create(x => x.ImgSubTitle))" />
+    <formGroup Element="@(_.Create(x => x.ImgUrl))">
+        <div class="zqui-upload zqui-upload_img">
+            <img id="ImgUrlId" data-defaultvalue="/Content/images/default-img.jpg" />
+        </div>
+        <div class="zqui-upload zqui-m_0" id="ImgUrlTrigger">
+            <input type="hidden" id="ImgUrl" />
+        </div>
+    </formGroup>
+    <textarea type="text" Element="@(_.Create(x => x.Demo))"></textarea>
+    <textarea type="text" Element="@(_.Create(x => x.Description))"></textarea>
+</tmpl>
+
+<tmpl id="listTmpl">
+    <tr>
+        <td>
+            <a class="btnView">{{:Name}}</a>
+        </td>
+        <td>{{:Code}}</td>
+        <td>{{:OrderByNo}}</td>
+        <td>{{:PageCategoryStr}}</td>
+        <td>
+            @if (_.CanOperation(itemId, OperationWay.编辑))
+            {
+                <a class="zqui-text_primary m_r_10 btnEdit btnEdit" title="编辑"><i class="icon icon-lg icon-edit"></i></a>
+            }
+            @if (_.CanOperation(itemId, OperationWay.删除))
+            {
+                <a class="zqui-text_danger m_r_10 btnRemove" title="删除"><i class="icon icon-lg icon-trash"></i></a>
+            }
+        </td>
+    </tr>
+</tmpl>
+
+<tmpl id="viewTmpl">
+    @*<div Element="@(_.Create(x => x.ParentName))"></div>*@
+    <div Element="@(_.Create(x => x.Name))"></div>
+    <div Element="@(_.Create(x => x.Code))"></div>
+    <div Element="@(_.Create(x => x.OrderByNo))"></div>
+    <div Element="@(_.Create(x => x.VideoUrl))"></div>
+    <div Element="@(_.Create(x => x.PageCategoryStr))"></div>
+    <div Element="@(_.Create(x => x.ImgTitle))"></div>
+    <div Element="@(_.Create(x => x.ImgSubTitle))"></div>
+    <formGroup Element="@_.Create(x => x.ImgUrl)">
+        <div class="zqui-upload zqui-upload_img">
+            <img id="ImageUrlViewId" data-defaultvalue="/Content/images/default-img.jpg" />
+        </div>
+    </formGroup>
+    <div Element="@(_.Create(x => x.Demo))"></div>
+    <div Element="@(_.Create(x => x.Description))"></div>
+    <div type="text" Element="@(_.Create(x => x.VideoUrl))" />
+    @*<fileList Element="@(_.Create(x => x.Video))" Type="单附件"></fileList>*@
+</tmpl>
+
+<toolbar key="请输入名称">
+    <select name="PageCategory" filter options="@typeof(PageCategory).EnumList("请选择页面类型","-1")"></select>
+</toolbar>
+
+<partial name="PageList" view-data="@_.ViewParam(new { NoAdd = isCanAdd })" />
+<partial name="PageDetail" />
+
+@section head{
+    <script src="~/Scripts/other/jquery.uploadifive.js"></script>
+    <script>
+        $(function(){
+            var tool = new Sail.RazorPage('栏目管理',"@_.ApiName", "@_.Id");
+            var api = new Sail.ApiHelper("@_.ApiName");
+            var tip = "首页模块编号按顺序分别固定为@(I18N.WEBIsCN ? "1101,1102,1103,1104" : "2101,2102,2103,2104")";
+            tool.CreatePage({
+                handleName: "/api/Category/GetListInfo",
+                titles: ["名称", "编号", "排序号", "页面类型", "操作"]
+            }).Query(1);
+
+            $("#ImgUrlTrigger").iconUpload();
+
+
+            tool
+                .on("after.Add", function (e, data) {
+                    $("input[name=Code]").parent().find(".zqui-form__tips").text(tip);
+                })
+                .on("after.Edit", function (e, data) {
+                      $("input[name=Code]").parent().find(".zqui-form__tips").text(tip);
+                    if (data.ImgUrl) {
+                        $("#ImgUrlId").attr("src", data.ImgUrl);
+                    }
+                })
+                .on("after.View", function(sender, data) {
+                    if (data.ImgUrl) {
+                        $("#ImageUrlViewId").attr("src", data.ImgUrl);
+                    }
+                })
+            tool.PreSave = function ($form, data) {
+                data.Language = "@I18N.CurrentWEBLanguage.ToInt()";
+                return data;
+            };
+        })
+    </script>
+}

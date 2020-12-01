@@ -1,0 +1,117 @@
+@page
+@{
+    var itemId = this.Request.Query["menuId"].ToString();
+    var _ = new AdminPage<PavilionSchedule>(ViewContext);
+    _.SetPage(itemId, "展馆日程", "");
+    var isCanAdd = !_.CanOperation(itemId);
+}
+
+<tmpl id="modalTmpl">
+    <input type="text" Element="@(_.Create(x => x.ExhibitionName))" />
+    @*<select Element="@(_.Create(x => x.Pavilion))" options="@Dict.GetDicts(DictType.展馆)">
+        <option value="">请选择展馆</option>
+    </select>*@
+    <checkbox Element="@(_.Create(v => v.Pavilion))" options="@Dict.GetDicts(DictType.展馆)"></checkbox>
+    <input Element="@(_.Create(v => v.StartTime))" />
+    <input Element="@(_.Create(v => v.EndTime))" />
+    @*<formGroup Element="@(_.Create(x => x.ImageUrl))">
+        <div class="zqui-upload zqui-upload_img">
+            <img id="ImageUrlModalId" data-defaultvalue="/Content/images/default-img.jpg" />
+        </div>
+        <div class="zqui-upload zqui-m_0" id="ImageUrlTrigger">
+            <input type="hidden" id="ImageUrl" />
+        </div>
+    </formGroup>*@
+    <textarea group Element="@(_.Create(v => v.Content))" class="richedit" data-item="Contract"></textarea>
+</tmpl>
+
+<tmpl id="listTmpl">
+    <tr>
+        <td>
+            <a class="btnView">{{:ExhibitionName}}</a>
+        </td>
+        <td>{{:PavilionName}}</td>
+        <td>{{ToDate:StartTime}}</td>
+        <td>{{ToDate:EndTime}}</td>
+        <td>
+            @if (_.CanOperation(itemId, OperationWay.编辑))
+            {
+                <a class="zqui-text_primary m_r_10 btnEdit btnEdit" title="编辑"><i class="icon icon-lg icon-edit"></i></a>
+            }
+            @if (_.CanOperation(itemId, OperationWay.删除))
+            {
+                <a class="zqui-text_danger m_r_10 btnRemove" title="删除"><i class="icon icon-lg icon-trash"></i></a>
+            }
+        </td>
+    </tr>
+</tmpl>
+
+<tmpl id="viewTmpl">
+    <div Element="@(_.Create(v => v.ExhibitionName))"></div>
+    <div Element="@(_.Create(v => v.PavilionName))"></div>
+    <div Element="@(_.Create(v => v.OrderByNo))"></div>
+    <div Element="@(_.Create(v => v.StartTime))"></div>
+    <div Element="@(_.Create(v => v.EndTime))"></div>
+    <div Element="@(_.Create(v => v.Content))"></div>
+</tmpl>
+
+<toolbar key="请输入展会名称">
+    <select filter name="pavilionId" options="@Dict.GetDicts(DictType.展馆)"><option value="">请选择展馆名称</option></select>
+</toolbar>
+
+<partial name="PageList" view-data="@_.ViewParam(new { NoAdd = isCanAdd })" />
+<partial name="PageDetail" />
+
+@section head{
+    <script src="~/Scripts/other/jquery.uploadifive.js"></script>
+    <script src="~/Scripts/datepicker/WdatePicker.js"></script>
+    <script>
+        $(function(){
+            var tool = new Sail.RazorPage('展馆日程',"@_.ApiName", "@_.Id");
+            tool.CreatePage({
+                handleName:"/api/PavilionSchedule/GetListInfo",
+                titles: ["展会名称", "展馆名称", "开始时间", "结束时间", "操作"]
+            }).Query(1);
+
+            //$("#ImageUrlTrigger").iconUpload();
+
+            tool.on("after.Edit", function (sender, data) {
+                //if (data.ImageUrl) {
+                //    $("#ImageUrlModalId").attr("src", data.ImageUrl);
+                //}
+                console.log("data.Pavilion===>", data);
+
+                $(`[name=Pavilion]`).prop("checked", false)
+                $(`[name=Pavilion]`).each(function (i, v) {
+                    var value = $(v).val();
+                    console.log("value===>", value);
+                    for (var j = 0; j < data.Pavilion.length; j++) {
+                        if (data.Pavilion[j].Id == value) {
+                            $(v).prop('checked', true);
+                        }
+                    }
+                });
+            });
+
+            tool.on("after.View", function (sender, data) {
+                //if (data.ImageUrl) {
+                //    $("#ImageUrlViewId").attr("src", data.ImageUrl);
+                //}
+            });
+
+            $(".checkList").addClass("zqui-checkbox_list");
+
+            tool.PreSave = function ($form, data) {
+                data.Language = "@I18N.CurrentWEBLanguage.ToInt()";
+                data.Pavilion = [];
+                tool.$Editor.find('.checkList input[type=checkbox]').each(function () {
+                    if (this.checked) {
+                        data.Pavilion.push({ Id: this.value} );
+                    }
+                });
+                console.log("data===>", data);
+                return data;
+            };
+        })
+    </script>
+}

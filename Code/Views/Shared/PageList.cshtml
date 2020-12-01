@@ -1,0 +1,28 @@
+﻿<div class="zqui-portlet zqui-portlet_light" id="divList">
+    <div class="zqui-portlet__hd">
+        <div class="zqui-caption zqui-title uppercase">
+            @(ViewData["PageTitle"])
+        </div>
+        <div class="zqui-actions">
+            @if (ViewData.ContainsKey("IsImport") && ((bool)ViewData["IsImport"]))
+            {
+        <a class="zqui-btn zqui-btn_warning btnImport">导入</a>            }
+            @if (ViewData.ContainsKey("IsExport") && ((bool)ViewData["IsExport"]))
+            {
+            <a class="zqui-btn zqui-btn_warning btnExport">导出</a>            }
+            @if (!ViewData.ContainsKey("NoAdd") || !((bool)ViewData["NoAdd"]))
+            {
+        <a class="zqui-btn zqui-btn_primary " id="btnAdd">新增</a>            }
+        </div>
+    </div>
+    <div class="toolbar"></div>
+    <div class="zqui-portlet__bd" id="pageList">
+        <div class="pageList">
+            <table class="zqui-table zqui-table_border">
+                <thead></thead>
+                <tbody></tbody>
+            </table>
+            <div class="zqui-table-pages" id="page"></div>
+        </div>
+    </div>
+</div>

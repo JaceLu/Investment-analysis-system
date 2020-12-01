@@ -1,0 +1,2079 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Investment</name>
+    </assembly>
+    <members>
+        <member name="T:Investment.Apis.AdminController">
+            <summary>
+            管理员表
+            </summary>
+        </member>
+        <member name="M:Investment.Apis.AdminController.BaseWhere(System.String)">
+            <summary>
+            条件过滤
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.AdminController.Login(System.String)">
+            <summary>
+            登录
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.AdminController.Logout">
+            <summary>
+            退出登陆
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.AdminController.Enable(System.String)">
+            <summary>
+            启用用户
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.AdminController.Disable(System.String)">
+            <summary>
+            停用用户
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.AdminController.ResetPwd(System.String)">
+            <summary>
+            用户密码重置
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.AdminController.ChangePwd(System.String)">
+            <summary>
+            修改密码
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.AdminController.BeforeAction(Sail.Common.DataContext,Sail.Web.ControllerEvent,System.Object)">
+            <summary>
+            调用方法之前的调用
+            </summary>
+            <param name="db"></param>
+            <param name="e"></param>
+            <param name="o"></param>
+        </member>
+        <member name="M:Investment.Apis.AdminController.GetUserList(System.Int32,System.Int32,System.String,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="key"></param>
+            <param name="status"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.AdminController.Ask">
+            <summary>
+            过滤超级管理员
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.AdminController.ChangeLanCN">
+            <summary>
+            修改当前后台语音为中文
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.AdminController.ChangeLanEN">
+            <summary>
+            修改当前后台语音为英文
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Investment.Apis.AppointmentMessageController">
+            <summary>
+            预约留言控制器
+            </summary>
+        </member>
+        <member name="M:Investment.Apis.AppointmentMessageController.BaseWhere(System.String)">
+            <summary>
+            筛选查询
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Investment.Apis.AppointmentMessageController.OrderBy">
+             <summary>
+            排序
+             </summary>
+        </member>
+        <member name="M:Investment.Apis.AppointmentMessageController.GetListInfo(System.Int32,System.Int32,System.String,System.Int32,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="key"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Investment.Apis.CategoryController">
+            <summary>
+            类型管理控制器
+            </summary>
+        </member>
+        <member name="M:Investment.Apis.CategoryController.BaseWhere(System.String)">
+            <summary>
+            筛选查询
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Investment.Apis.CategoryController.OrderBy">
+             <summary>
+            排序
+             </summary>
+        </member>
+        <member name="M:Investment.Apis.CategoryController.GetListInfo(System.Int32,System.Int32,System.String,System.Int32)">
+            <summary>
+             
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="key"></param>
+            <param name="type"></param>
+            <param name="PageCategory"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.CategoryController.CreateChild(System.String,System.String)">
+            <summary>
+            创建二级菜单
+            </summary>
+        </member>
+        <member name="M:Investment.Apis.CategoryController.BeforeDelete(Sail.Common.DataContext,Investment.Models.Category)">
+            <summary>
+            
+            </summary>
+            <param name="db"></param>
+            <param name="model"></param>
+        </member>
+        <member name="T:Investment.Apis.DictController">
+            <summary>
+            字典设置
+            </summary>
+        </member>
+        <member name="M:Investment.Apis.DictController.BaseWhere(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Investment.Apis.DictController.OrderBy">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Investment.Apis.DictController.GetInfoType(System.Int32,System.Int32,System.String,Investment.Models.DictType,System.Int32)">
+            <summary>
+            获取信息类型
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.DictController.Enable(System.String)">
+            <summary>
+            启用
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.DictController.Disable(System.String)">
+            <summary>
+            停用
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Investment.Apis.FileController.UploadRoot">
+            <summary>
+            上传文件默认路径，可以重写，默认是"~/uploads/yyyyMM/"
+            </summary>
+            <value>The upload root.</value>
+        </member>
+        <member name="M:Investment.Apis.FileController.Uploaded(Microsoft.AspNetCore.Http.IFormFile,Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            上传图片
+            </summary>
+            <param name="file"></param>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.FileController.DownLoad(System.String)">
+            <summary>
+            文件下载
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.FileController.Rename(System.String,System.String)">
+            <summary>
+            文件重命名
+            </summary>
+            <param name="id"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Investment.Apis.FriendlyLinkController">
+            <summary>
+            友链控制器
+            </summary>
+        </member>
+        <member name="M:Investment.Apis.FriendlyLinkController.BaseWhere(System.String)">
+            <summary>
+            筛选查询
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Investment.Apis.FriendlyLinkController.OrderBy">
+             <summary>
+            排序
+             </summary>
+        </member>
+        <member name="M:Investment.Apis.FriendlyLinkController.GetListInfo(System.Int32,System.Int32,System.String)">
+            <summary>
+            获取数据（后台）
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="key"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.FriendlyLinkController.GetLinks">
+            <summary>
+            前台获取数据（根据语言)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Investment.Apis.IconController">
+            <summary>
+            图片上传
+            </summary>
+        </member>
+        <member name="P:Investment.Apis.IconController.UploadRoot">
+            <summary>
+            上传目录
+            </summary>
+        </member>
+        <member name="P:Investment.Apis.IconController.UploadPre">
+            <summary>
+            缩略图目录
+            </summary>
+        </member>
+        <member name="M:Investment.Apis.IconController.Uploaded(Microsoft.AspNetCore.Http.IFormFile,Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            上传图片
+            </summary>
+            <param name="file"></param>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Investment.Apis.NewsController">
+            <summary>
+            新闻资讯
+            </summary>
+        </member>
+        <member name="M:Investment.Apis.NewsController.BaseWhere(System.String)">
+            <summary>
+            条件搜索
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Investment.Apis.NewsController.OrderBy">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="M:Investment.Apis.NewsController.GetNewsList(System.Int32,System.Int32,System.String,System.String,System.Int32,System.String,System.String)">
+            <summary>
+            获取列表数据
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="key"></param>
+            <param name="categoryId"></param>
+            <param name="type"></param>
+            <param name="startDay"></param>
+            <param name="endDay"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.NewsController.GetService(System.String)">
+            <summary>
+            前台获取数据（根据语言）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.NewsController.GetNews(System.String)">
+            <summary>
+            前台获取数据（根据语言）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.NewsController.GetNewsData(System.Int32,System.String,System.Int32)">
+            <summary>
+            PC网站获取数据
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="category"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Investment.Apis.PageConfigController">
+            <summary>
+            关于我们控制器
+            </summary>
+        </member>
+        <member name="M:Investment.Apis.PageConfigController.BaseWhere(System.String)">
+            <summary>
+            筛选查询
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Investment.Apis.PageConfigController.OrderBy">
+             <summary>
+            排序
+             </summary>
+        </member>
+        <member name="M:Investment.Apis.PageConfigController.GetInfo">
+            <summary>
+            获取数据（后台）
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.PageConfigController.Save(System.String,System.String)">
+            <summary>
+            保存
+            </summary>
+            <param name="id"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Investment.Apis.ParamController">
+            <summary>
+            参数
+            </summary>
+        </member>
+        <member name="M:Investment.Apis.ParamController.GetParam">
+            <summary>
+            获取系统参数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.ParamController.Save(System.String)">
+            <summary>
+            修改系统参数
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Investment.Apis.PavilionScheduleController">
+            <summary>
+            展馆日程控制器
+            </summary>
+        </member>
+        <member name="M:Investment.Apis.PavilionScheduleController.BaseWhere(System.String)">
+            <summary>
+            筛选查询
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Investment.Apis.PavilionScheduleController.OrderBy">
+             <summary>
+            排序
+             </summary>
+        </member>
+        <member name="M:Investment.Apis.PavilionScheduleController.GetListInfo(System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="key"></param>
+            <param name="pavilionId"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.PavilionScheduleController.GetPavilionSchedule(System.Int32,System.Int32)">
+            <summary>
+            前台获取数据（根据语言）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.PavilionScheduleController.GetFloatingWindow">
+            <summary>
+            前台获取数据（根据语言）(浮窗)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.PavilionScheduleController.GetSchedule(System.String)">
+            <summary>
+            前台获取数据（根据语言）(展会日程详情)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.PavilionScheduleController.GetScheduleList">
+            <summary>
+            前台获取数据（根据语言）(展会日程主页展示信息)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Investment.Apis.RoleController">
+            <summary>
+            角色权限
+            </summary>
+        </member>
+        <member name="M:Investment.Apis.RoleController.Menus">
+            <summary>
+            获取角色权限菜单
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.RoleController.AfterSave(Sail.Common.DataContext,Investment.Models.Role,Investment.Models.Role,System.Object,System.Boolean)">
+            <summary>
+            角色菜单更新以后更新
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.RoleController.GetList(System.Int32,System.Int32,System.String)">
+            <summary>
+            过滤超级管理员
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.RoleController.GetUserRoleList(System.Int32,System.Int32,System.String)">
+            <summary>
+            过滤超级管理员
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.RoleController.Enable(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.RoleController.Disable(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Investment.Apis.SlideshowController">
+            <summary>
+            首页大图控制器
+            </summary>
+        </member>
+        <member name="M:Investment.Apis.SlideshowController.BaseWhere(System.String)">
+            <summary>
+            筛选查询
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Investment.Apis.SlideshowController.OrderBy">
+             <summary>
+            排序
+             </summary>
+        </member>
+        <member name="M:Investment.Apis.SlideshowController.GetListInfo(System.Int32,System.Int32,System.String)">
+            <summary>
+             
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="key"></param>
+            <param name="status"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.SlideshowController.GetPictures">
+            <summary>
+            前台获取轮播图数据（根据语言）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Investment.Apis.UserController">
+            <summary>
+            用户控制器
+            </summary>
+        </member>
+        <member name="M:Investment.Apis.UserController.BaseWhere(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.UserController.Ask">
+            <summary>
+            过滤超级管理员
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.UserController.Login(System.String)">
+            <summary>
+            登录
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.UserController.ChangePwd(System.String)">
+            <summary>
+            修改密码
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.UserController.Logout">
+            <summary>
+            退出登陆
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Apis.UserController.UpDateLangluage(System.Int32)">
+            <summary>
+            修改语言包
+            </summary>
+        </member>
+        <member name="T:Investment.Apis.UserLoginLogController">
+            <summary>
+            用户
+            </summary>
+        </member>
+        <member name="M:Investment.Apis.UserLoginLogController.BaseWhere(System.String)">
+            <summary>
+            条件过滤
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Investment.Apis.wangUpController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Apis.wangUpController.UploadRoot">
+            <summary>
+            上传文件默认路径，可以重写，默认是"~/uploads/yyyyMM/"
+            </summary>
+            <value>The upload root.</value>
+        </member>
+        <member name="M:Investment.Apis.wangUpController.Uploaded(Microsoft.AspNetCore.Http.IFormFile,Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            上传图片
+            </summary>
+            <param name="file"></param>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Investment.Models.TreeHelper">
+            <summary>
+            树的帮助类
+            </summary>
+        </member>
+        <member name="M:Investment.Models.TreeHelper.GetNodes``1(Sail.Common.DataContext,System.String)">
+            <summary>
+            根据父节点读取子节点
+            </summary>
+            <typeparam name="Tree"></typeparam>
+            <param name="db"></param>
+            <param name="parentId"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Investment.Models.Abstract.BaseDict.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Abstract.BaseDict.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Abstract.BaseDict.StatusStr">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="M:Investment.Models.Abstract.BaseDict.ToKvPair">
+            <summary>
+            转成键值对
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Models.Abstract.BaseDict.GetDict``1">
+            <summary>
+            获取所有字典
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Models.Abstract.BaseDict.GetHashCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Models.Abstract.BaseDict.Equals(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Models.Abstract.BaseDict.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Investment.Models.Abstract.BaseLog">
+            <summary>
+            日志基类
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Abstract.BaseLog.UserId">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Abstract.BaseLog.UserName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Abstract.BaseLog.LoginTime">
+            <summary>
+            登录时间
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Abstract.BaseLog.LoginIP">
+            <summary>
+            登录IP
+            </summary>
+        </member>
+        <member name="M:Investment.Models.Abstract.BaseLog.CreateLog``1(Sail.Common.DataContext,Sail.Common.IUser,System.Nullable{System.DateTime},System.String)">
+            <summary>
+            保存登录日志
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="db"></param>
+            <param name="user"></param>
+            <param name="LoginTime"></param>
+            <param name="LoginIP"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Investment.Models.Abstract.DictView">
+            <summary>
+            字典视图
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Abstract.DictView.Id">
+            <summary>
+            字典Id
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Abstract.DictView.Name">
+            <summary>
+            字典名称
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Abstract.DictView.Type">
+            <summary>
+            字典类型
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Abstract.SortableInfo.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Abstract.SortableInfo.OrderByNo">
+            <summary>
+            排序号
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Abstract.SortableInfo.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="T:Investment.Models.AppointmentMessage">
+            <summary>
+            预约留言
+            </summary>
+        </member>
+        <member name="P:Investment.Models.AppointmentMessage.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Investment.Models.AppointmentMessage.Tel">
+            <summary>
+            电话
+            </summary>
+        </member>
+        <member name="P:Investment.Models.AppointmentMessage.StartTime">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="P:Investment.Models.AppointmentMessage.EndTime">
+            <summary>
+            结束时间
+            </summary>
+        </member>
+        <member name="P:Investment.Models.AppointmentMessage.Type">
+            <summary>
+            预约类型
+            </summary>
+        </member>
+        <member name="P:Investment.Models.AppointmentMessage.TypeStr">
+            <summary>
+            预约类型
+            </summary>
+        </member>
+        <member name="P:Investment.Models.AppointmentMessage.Pavilion">
+            <summary>
+            场馆
+            </summary>
+        </member>
+        <member name="P:Investment.Models.AppointmentMessage.PavilionName">
+            <summary>
+            展馆名称
+            </summary>
+        </member>
+        <member name="P:Investment.Models.AppointmentMessage.Message">
+            <summary>
+            留言
+            </summary>
+        </member>
+        <member name="P:Investment.Models.AppointmentMessage.Language">
+            <summary>
+            语言
+            </summary>
+        </member>
+        <member name="T:Investment.Models.AppointmentType">
+            <summary>
+            预约类型
+            </summary>
+        </member>
+        <member name="T:Investment.Models.Category">
+            <summary>
+            类别
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Category.Code">
+            <summary>
+            编号
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Category.ParentId">
+            <summary>
+            上级类别
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Category.ParentName">
+            <summary>
+            上级类别
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Category.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Category.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Category.Demo">
+            <summary>
+            说明
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Category.ImgUrl">
+            <summary>
+            大图
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Category.ImgTitle">
+            <summary>
+            大图主标题
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Category.ImgSubTitle">
+            <summary>
+            大图副标题
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Category.PageCategory">
+            <summary>
+            页面类型
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Category.PageCategoryStr">
+            <summary>
+            页面类型
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Category.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Category.VideoUrl">
+            <summary>
+            视频vid
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Category.Language">
+            <summary>
+            语言
+            </summary>
+        </member>
+        <member name="M:Investment.Models.Category.CategoryByParent(System.String)">
+            <summary>
+            获取父节点下的子节点
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Models.Category.Categorys">
+            <summary>
+            获取所有字典
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Models.Category.ParentNodes">
+            <summary>
+            获取news页面类型的数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Investment.Models.Dict">
+            <summary>
+            字典数据
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Dict.Type">
+            <summary>
+            字典类型
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Dict.Language">
+            <summary>
+            语言
+            </summary>
+        </member>
+        <member name="M:Investment.Models.Dict.GetDicts(Investment.Models.DictType)">
+            <summary>
+            获取所有字典
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Models.Dict.GetDictsbyLan(Investment.Models.DictType)">
+            <summary>
+            获取所有字典
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Models.Dict.GetAllDict(Investment.Models.DictType)">
+            <summary>
+            获取所有字典
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Investment.Models.FileDb">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Models.FileDb.FileDbId">
+            <summary>
+            文件ID
+            </summary>
+        </member>
+        <member name="P:Investment.Models.FileDb.FileName">
+            <summary>
+            文件名
+            </summary>
+        </member>
+        <member name="P:Investment.Models.FileDb.DisPlayName">
+            <summary>
+            显示文件名
+            </summary>
+        </member>
+        <member name="P:Investment.Models.FileDb.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Investment.Models.FileDb.FilePath">
+            <summary>
+            文件路径
+            </summary>
+        </member>
+        <member name="M:Investment.Models.FileDb.Equals(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Models.FileDb.GetHashCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Investment.Models.FriendlyLink">
+            <summary>
+            友情链接
+            </summary>
+        </member>
+        <member name="P:Investment.Models.FriendlyLink.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Investment.Models.FriendlyLink.Url">
+            <summary>
+            友链地址
+            </summary>
+        </member>
+        <member name="P:Investment.Models.FriendlyLink.OrderByNo">
+            <summary>
+            排序号
+            </summary>
+        </member>
+        <member name="P:Investment.Models.FriendlyLink.ImageUrl">
+            <summary>
+            logo
+            </summary>
+        </member>
+        <member name="T:Investment.Models.HistoryShows">
+            <summary>
+            历次展会
+            </summary>
+        </member>
+        <member name="P:Investment.Models.HistoryShows.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Investment.Models.HistoryShows.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Investment.Models.HistoryShows.Content">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:Investment.Models.HistoryShows.PavilionName">
+            <summary>
+            展馆名称
+            </summary>
+        </member>
+        <member name="P:Investment.Models.HistoryShows.ImageUrl">
+            <summary>
+            图片
+            </summary>
+        </member>
+        <member name="P:Investment.Models.HistoryShows.ShowsTime">
+            <summary>
+            展出时间
+            </summary>
+        </member>
+        <member name="P:Investment.Models.HistoryShows.ShowsEndTime">
+            <summary>
+            展出结束时间
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Interface.ITree.OrderByNo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Interface.ITree.ParentId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Interface.ITree.CreateTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Investment.Models.News">
+            <summary>
+            新闻资讯
+            </summary>
+        </member>
+        <member name="P:Investment.Models.News.Category">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="P:Investment.Models.News.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Investment.Models.News.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Investment.Models.News.Content">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:Investment.Models.News.ImageUrl">
+            <summary>
+            图片
+            </summary>
+        </member>
+        <member name="P:Investment.Models.News.PublishTime">
+            <summary>
+            时间
+            </summary>
+        </member>
+        <member name="P:Investment.Models.News.Author">
+            <summary>
+            作者
+            </summary>
+        </member>
+        <member name="P:Investment.Models.News.OutUrl">
+            <summary>
+            外链路径
+            </summary>
+        </member>
+        <member name="P:Investment.Models.News.IsOutUrl">
+            <summary>
+            使用外链路径
+            </summary>
+        </member>
+        <member name="P:Investment.Models.News.Language">
+            <summary>
+            语言
+            </summary>
+        </member>
+        <member name="T:Investment.Models.PageConfig">
+            <summary>
+            首页设置
+            </summary>
+        </member>
+        <member name="P:Investment.Models.PageConfig.Language">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Models.PageConfig.ColourfulLogo">
+            <summary>
+            网页顶部彩色Logo
+            </summary>
+        </member>
+        <member name="P:Investment.Models.PageConfig.WhiteLogo">
+            <summary>
+            网页顶部白色Logo
+            </summary>
+        </member>
+        <member name="P:Investment.Models.PageConfig.BottomLogo">
+            <summary>
+            网站底部Logo
+            </summary>
+        </member>
+        <member name="P:Investment.Models.PageConfig.WXErcode">
+            <summary>
+            微信二维码
+            </summary>
+        </member>
+        <member name="P:Investment.Models.PageConfig.QQ">
+            <summary>
+            客服QQ
+            </summary>
+        </member>
+        <member name="P:Investment.Models.PageConfig.SiteName">
+            <summary>
+            网站名称
+            </summary>
+        </member>
+        <member name="P:Investment.Models.PageConfig.Location">
+            <summary>
+            地址
+            </summary>
+        </member>
+        <member name="P:Investment.Models.PageConfig.Phone">
+            <summary>
+            联系电话
+            </summary>
+        </member>
+        <member name="P:Investment.Models.PageConfig.Phones">
+            <summary>
+            联系电话
+            </summary>
+        </member>
+        <member name="P:Investment.Models.PageConfig.Mail">
+            <summary>
+            邮箱地址
+            </summary>
+        </member>
+        <member name="P:Investment.Models.PageConfig.Copyright">
+            <summary>
+            版权名称
+            </summary>
+        </member>
+        <member name="P:Investment.Models.PageConfig.WEBDefault">
+            <summary>
+            网站默认设置
+            </summary>
+        </member>
+        <member name="M:Investment.Models.PageConfig.GetWEB(Sail.Common.IDataContext)">
+            <summary>
+            获取默认参数
+            </summary>
+            <param name="db"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Models.PageConfig.Get">
+            <summary>
+            获取默认参数
+            </summary>
+            <param name="db"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Investment.Models.Param">
+            <summary>
+            系统参数表
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Param.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Param.Host">
+            <summary>
+            域名
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Param.SiteName">
+            <summary>
+            中文名称
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Param.SiteName_EN">
+            <summary>
+            英文名称
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Param.Logo">
+            <summary>
+            系统Logo
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Param.Icon">
+            <summary>
+            网页Icon
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Param.Description">
+            <summary>
+            网站介绍
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Param.Keywords">
+            <summary>
+            网站搜索关键字
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Param.Visitors">
+            <summary>
+            访问量
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Param.BaseValue">
+            <summary>
+            访客量基础值
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Param.CoefficientValues">
+            <summary>
+            访客量系数值
+            </summary>
+        </member>
+        <member name="T:Investment.Models.PavilionSchedule">
+            <summary>
+            展览日程
+            </summary>
+        </member>
+        <member name="P:Investment.Models.PavilionSchedule.ExhibitionName">
+            <summary>
+            展会名称
+            </summary>
+        </member>
+        <member name="P:Investment.Models.PavilionSchedule.Pavilion">
+            <summary>
+            展馆名称
+            </summary>
+        </member>
+        <member name="P:Investment.Models.PavilionSchedule.PavilionName">
+            <summary>
+            展馆名称
+            </summary>
+        </member>
+        <member name="P:Investment.Models.PavilionSchedule.StartTime">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="P:Investment.Models.PavilionSchedule.StartYear">
+            <summary>
+            开始年份
+            </summary>
+        </member>
+        <member name="P:Investment.Models.PavilionSchedule.EndTime">
+            <summary>
+            结束时间
+            </summary>
+        </member>
+        <member name="P:Investment.Models.PavilionSchedule.Content">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:Investment.Models.PavilionSchedule.ImageUrl">
+            <summary>
+            图片
+            </summary>
+        </member>
+        <member name="T:Investment.Models.Role">
+            <summary>
+            用户角色
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Role.RoleName">
+            <summary>
+            角色名称
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Role.Memo">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Role.Powers">
+            <summary>
+            功能权限
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Role.PowersStr">
+            <summary>
+            功能权限
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Role.CanEdit">
+            <summary>
+            可以新增/编辑
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Role.CanDelete">
+            <summary>
+            可以删除
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Role.OrderByNo">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Role.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="M:Investment.Models.Role.GetAllRole">
+            <summary>
+            读取全部角色
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Models.Role.GetRoles">
+            <summary>
+            读取全部角色
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Models.Role.BeforeAction(Sail.Common.DataContext,Sail.Web.ControllerEvent,System.Object)">
+            <summary>
+             删除角色前，进行数据检查
+            </summary>
+            <param name="db"></param>
+            <param name="e"></param>
+            <param name="o"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Models.Role.BaseWhere(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Models.Role.GetList(System.Int32,System.Int32,System.String,Sail.Common.DataContext)">
+            <summary>
+            过滤超级管理员
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="key"></param>
+            <param name="db"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Investment.Models.Slideshow">
+            <summary>
+            大图
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Slideshow.ImageUrl">
+            <summary>
+            图片
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Slideshow.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Slideshow.Subtitle">
+            <summary>
+            副标题
+            </summary>
+        </member>
+        <member name="T:Investment.Models.Admin">
+            <summary>
+            管理员表
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Admin.Role">
+            <summary>
+            角色权限
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Admin.IsDisabled">
+            <summary>
+            是否已停用
+            </summary>
+        </member>
+        <member name="P:Investment.Models.Admin.IsSuperAdmin">
+            <summary>
+            是否超级管理员
+            </summary>
+        </member>
+        <member name="M:Investment.Models.Admin.IsHasPermission(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="powerName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Investment.Models.User">
+            <summary>
+            用户表
+            </summary>
+        </member>
+        <member name="P:Investment.Models.User.DefaultPassword">
+            <summary>
+            默认密码
+            </summary>
+        </member>
+        <member name="P:Investment.Models.User.UserId">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:Investment.Models.User.LoginId">
+            <summary>
+            登录账号
+            </summary>
+        </member>
+        <member name="P:Investment.Models.User.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:Investment.Models.User.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:Investment.Models.User.Phone">
+            <summary>
+            注册手机
+            </summary>
+        </member>
+        <member name="P:Investment.Models.User.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Investment.Models.User.IsAutoLogin">
+            <summary>
+            是否自动登录
+            </summary>
+        </member>
+        <member name="P:Investment.Models.User.IsSuperAdmin">
+            <summary>
+            是否超级管理员
+            </summary>
+        </member>
+        <member name="M:Investment.Models.User.IsHasPermission(System.String)">
+            <summary>
+            是否拥有权限
+            </summary>
+            <param name="powerName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Investment.Models.UserLoginLog">
+            <summary>
+            登录日志
+            </summary>
+        </member>
+        <member name="M:Investment.Code.BundleConfig.RegisterMainCss(WebOptimizer.IAssetPipeline)">
+            <summary>
+             注册管理端样式
+            </summary>
+            <param name="pipeline"></param>
+        </member>
+        <member name="M:Investment.Code.BundleConfig.RegisterMainJs(WebOptimizer.IAssetPipeline)">
+            <summary>
+            注册管理端js
+            </summary>
+            <param name="pipeline"></param>
+        </member>
+        <member name="T:Investment.Code.Extension">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Investment.Code.Languages.CHINESE_CN">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Investment.Code.Languages.ENGLISH">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Code.I18N.CurrentPacket">
+            <summary>
+            语言包
+            </summary>
+        </member>
+        <member name="P:Investment.Code.I18N.IsCN">
+            <summary>
+            是否中文幻境
+            </summary>
+        </member>
+        <member name="M:Investment.Code.I18N.GetText(System.String)">
+            <summary>
+            读取信息
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Investment.Code.I18N.CurrentLanguage">
+            <summary>
+            网站当前语言
+            </summary>
+        </member>
+        <member name="P:Investment.Code.I18N.CurrentWEBLanguage">
+            <summary>
+            管理后台当前语言
+            </summary>
+        </member>
+        <member name="M:Investment.Code.I18N.ConvertToMessage(System.Collections.Generic.IEnumerable{System.Data.DataRow})">
+            <summary>
+            convert dataRow to dictionary
+            </summary>
+            <param name="dataRows"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Code.I18N.GetLanguagesesByColumns(System.Data.DataColumnCollection)">
+            <summary>
+            
+            </summary>
+            <param name="column"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Code.I18N.ConvertRawToLanguageMap(System.Collections.Generic.List{Investment.Code.Languages},System.Collections.Generic.List{System.String})">
+            <summary>
+            
+            </summary>
+            <param name="languages"></param>
+            <param name="row"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Investment.Code.TagHelpers.CheckBoxTagHelper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Code.TagHelpers.CheckBoxTagHelper.DefaultValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Code.TagHelpers.CheckBoxTagHelper.DefaultText">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Code.TagHelpers.CheckBoxTagHelper.Options">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Investment.Code.TagHelpers.CheckBoxTagHelper.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="output"></param>
+        </member>
+        <member name="T:Investment.Code.TagHelpers.ElementTagHelper">
+            <summary>
+            添加element属性
+            </summary>
+        </member>
+        <member name="P:Investment.Code.TagHelpers.ElementTagHelper.Element">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Code.TagHelpers.ElementTagHelper.Setting">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Code.TagHelpers.ElementTagHelper.IsMulti">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Code.TagHelpers.ElementTagHelper.ExtendClass">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Code.TagHelpers.ElementTagHelper.IsView">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Code.TagHelpers.ElementTagHelper.HasTips">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Code.TagHelpers.ElementTagHelper.HasLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Code.TagHelpers.ElementTagHelper.DefaultValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Code.TagHelpers.ElementTagHelper.DefaultText">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Code.TagHelpers.ElementTagHelper.HasGroup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Code.TagHelpers.ElementTagHelper.Options">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Code.TagHelpers.ElementTagHelper.OptionMode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Investment.Code.TagHelpers.ElementTagHelper.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="output"></param>
+        </member>
+        <member name="T:Investment.Code.TagHelpers.FilterTagHelper">
+            <summary>
+            过滤
+            </summary>
+        </member>
+        <member name="M:Investment.Code.TagHelpers.FilterTagHelper.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="output"></param>
+        </member>
+        <member name="T:Investment.Code.TagHelpers.FormGroupTagHelper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Code.TagHelpers.FormGroupTagHelper.Element">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Code.TagHelpers.FormGroupTagHelper.Setting">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Code.TagHelpers.FormGroupTagHelper.IsMulti">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Code.TagHelpers.FormGroupTagHelper.IsView">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Code.TagHelpers.FormGroupTagHelper.ExtendClass">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Code.TagHelpers.FormGroupTagHelper.HasGroup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Code.TagHelpers.FormGroupTagHelper.HasTips">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Code.TagHelpers.FormGroupTagHelper.HasLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Investment.Code.TagHelpers.FormGroupTagHelper.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="output"></param>
+        </member>
+        <member name="T:Investment.Code.TagHelpers.HtmlElement">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Code.TagHelpers.HtmlElement.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Code.TagHelpers.HtmlElement.Class">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Code.TagHelpers.HtmlElement.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Code.TagHelpers.HtmlElement.InnertHtml">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Investment.Code.TagHelpers.HtmlElement.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Investment.Code.TagHelpers.HtmlElement.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <param name="class"></param>
+            <param name="name"></param>
+            <param name="innerHtml"></param>
+        </member>
+        <member name="M:Investment.Code.TagHelpers.HtmlElement.ToAttributesString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Investment.Code.TagHelpers.JsrenderTagHelper">
+            <summary>
+            JsViews模板
+            </summary>
+        </member>
+        <member name="T:Investment.Code.TagHelpers.TagHelperContextExtension">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Investment.Code.TagHelpers.TagHelperContextExtension.HasAttr(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,System.String)">
+            <summary>
+            是否含指定有属性
+            </summary>
+            <param name="context"></param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Investment.Code.TagHelpers.TagHelperOutputExtension">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Investment.Code.TagHelpers.TagHelperOutputExtension.SetAttributes(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            设置属性
+            </summary>
+            <param name="output"></param>
+            <param name="attributes"></param>
+        </member>
+        <member name="M:Investment.Code.TagHelpers.TagHelperExtentions.MergeAttribute(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttributeList,System.String,System.String)">
+            <summary>
+            合并属性
+            </summary>
+            <param name="list"></param>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Investment.Code.TagHelpers.TagHelperExtentions.MergeAttribute(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttributeList,System.String,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute)">
+            <summary>
+            合并属性
+            </summary>
+            <param name="list"></param>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Investment.Code.TagHelpers.TagHelperExtentions.RemoveAttribute(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttributeList,System.String)">
+            <summary>
+            移除属性
+            </summary>
+            <param name="list"></param>
+            <param name="name"></param>
+        </member>
+        <member name="T:Investment.Code.TagHelpers.ToolbarTagHelper">
+            <summary>
+            工具栏
+            </summary>
+        </member>
+        <member name="T:Investment.Code.Util">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Investment.Code.Util.ReadExcel(System.String,System.Int32)">
+            <summary>
+            read excel from filePath
+            </summary>
+            <param name="filePath"></param>
+            <param name="sheetIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Code.Util.ExcelToDict(System.Collections.Generic.IEnumerable{System.Data.DataRow})">
+            <summary>
+            convert dataRow to dictionary
+            </summary>
+            <param name="dataRows"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Code.Util.GetHeader``1(System.Data.DataColumnCollection)">
+            <summary>
+            
+            </summary>
+            <param name="column"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Investment.Code.Util.ToDictionary``1(``0,System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            convert obj to dict
+            </summary>
+            <param name="obj"></param>
+            <param name="expression"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+            <exception cref="T:Sail.Common.SailCommonException"></exception>
+        </member>
+        <member name="M:Investment.Code.Util.ToObject``1(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            convert dict to obj
+            </summary>
+            <param name="obj"></param>
+            <param name="expression"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+            <exception cref="T:Sail.Common.SailCommonException"></exception>
+        </member>
+        <member name="M:Investment.Code.Util.ToDictionaryWith``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.KeyValuePair{``1,``2}})">
+            <summary>
+            convert obj to dict
+            </summary>
+            <param name="obj"></param>
+            <param name="expression"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+            <exception cref="T:Sail.Common.SailCommonException"></exception>
+        </member>
+        <member name="T:Investment.Layouts.AdminLayout">
+            <summary>
+            用户模板页
+            </summary>
+        </member>
+        <member name="P:Investment.Layouts.AdminLayout.LoginUrl">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Layouts.AdminLayout.IndexUrl">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Layouts.AdminLayout.Menus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Investment.Layouts.AdminLayout.LoadMenu">
+            <summary>
+            加载菜单
+            </summary>
+        </member>
+        <member name="M:Investment.Layouts.AdminPage`1.CanOperation(System.String,Investment.Layouts.OperationWay)">
+            <summary>
+            是否有新增权限
+            </summary>
+        </member>
+        <member name="T:Investment.Layouts.OperationWay">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Investment.Layouts.UserLayout">
+            <summary>
+            用户模板页
+            </summary>
+        </member>
+        <member name="F:Investment.Layouts.UserLayout._httpAccessor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Layouts.UserLayout.UserAgent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Layouts.UserLayout.IsInWechat">
+            <summary>
+            是否在微信中
+            </summary>
+        </member>
+        <member name="P:Investment.Layouts.UserLayout.IsPcWechat">
+            <summary>
+            pc端微信
+            </summary>
+        </member>
+        <member name="P:Investment.Layouts.UserLayout.IndexUrl">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Layouts.UserLayout.LoginUrl">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Investment.Layouts.UserLayout.Referer">
+            <summary>
+            登陆后跳转路径
+            </summary>
+        </member>
+        <member name="P:Investment.Layouts.UserMenu.Menus">
+            <summary>
+            菜单列表
+            </summary>
+        </member>
+        <member name="M:Investment.Layouts.UserMenu.LoadAdminMenu(System.String,System.Func{System.String,System.String})">
+            <summary>
+            
+            </summary>
+            <param name="fileName"></param>
+            <param name="formatUrl"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sail.Tags.TagHelperExtentions.MergeAttribute(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttributeList,System.String,System.String)">
+            <summary>
+            合并属性
+            </summary>
+            <param name="list"></param>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Sail.Tags.TagHelperExtentions.MergeAttribute(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttributeList,System.String,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute)">
+            <summary>
+            合并属性
+            </summary>
+            <param name="list"></param>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Sail.Tags.TagHelperExtentions.RemoveAttribute(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttributeList,System.String)">
+            <summary>
+            移除属性
+            </summary>
+            <param name="list"></param>
+            <param name="name"></param>
+        </member>
+        <member name="T:Sail.Tags.UploadType">
+            <summary>
+            上传类型
+            </summary>
+        </member>
+        <member name="F:Sail.Tags.UploadType.单附件">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Sail.Tags.UploadType.多附件">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Sail.Tags.UploadType.单图片">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Sail.Tags.UploadType.多图片">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Sail.Tags.UpLoaderTagHelper">
+            <summary>
+            上传
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.UpLoaderTagHelper.Element">
+            <summary>
+            上传元素
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.UpLoaderTagHelper.DefaultValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.UpLoaderTagHelper.IsFileDb">
+            <summary>
+            是否关联文件数据库
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.UpLoaderTagHelper.Setting">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.UpLoaderTagHelper.Type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.UpLoaderTagHelper.Title">
+            <summary>
+            上传按钮名称
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.UpLoaderTagHelper.ExtendClass">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Sail.Tags.UploaderViewTagHelper">
+            <summary>
+            文件预览
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.UploaderViewTagHelper.Element">
+            <summary>
+            上传元素
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.UploaderViewTagHelper.IsFileDb">
+            <summary>
+            是否关联文件数据库
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.UploaderViewTagHelper.Setting">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.UploaderViewTagHelper.Type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sail.Tags.UploaderViewTagHelper.ExtendClass">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

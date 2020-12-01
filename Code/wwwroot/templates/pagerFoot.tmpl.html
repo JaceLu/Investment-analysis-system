@@ -1,0 +1,14 @@
+﻿
+<div class="container">
+    <ul>
+        <!--<li><a href="#">&laquo;</a></li>-->
+        {{for Pages}}
+        {{if isSelect}}
+        <li class="active"><a href="#" page="{{>index}}">{{>title}}</a></li>
+        {{else}}
+        <li ><a href="#" data-page="{{>index}}" class="onPage">{{>title}}</a></li>
+        {{/if}}
+        {{/for}}
+        <!--<li><a href="#">&raquo;</a></li>-->
+    </ul>
+</div>

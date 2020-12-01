@@ -1,0 +1,90 @@
+﻿@page
+@{
+    var itemId = this.Request.Query["menuId"].ToString();
+    var _ = new AdminPage<Slideshow>(ViewContext);
+    _.SetPage(itemId, "大图设置", "");
+    var isCanAdd = !_.CanOperation(itemId);
+}
+
+<tmpl id="modalTmpl">
+    <input type="text" Element="@(_.Create(x => x.Title))" />
+    <input type="text" Element="@(_.Create(x => x.Subtitle))" />
+    <input type="text" Element="@(_.Create(x => x.OrderByNo))" />
+    <formGroup Element="@(_.Create(x => x.ImageUrl))">
+        <div class="zqui-upload zqui-upload_img">
+            <img id="ImageUrlModalId" data-defaultvalue="/Content/images/default-img.jpg" />
+        </div>
+        <div class="zqui-upload zqui-m_0" id="ImageUrlTrigger">
+            <input type="hidden" id="ImageUrl" />
+        </div>
+    </formGroup>
+</tmpl>
+
+<tmpl id="listTmpl">
+    <tr>
+        <td>
+            <a class="btnView"><img style="width:80px;height:40px" src="{{:ImageUrl}}" data-defaultvalue="/Content/images/default-img.jpg" /></a>
+        </td>
+        <td>{{:Title}}</td>
+        <td>{{:Subtitle}}</td>
+        <td>{{:OrderByNo}}</td>
+        <td>
+            @if (_.CanOperation(itemId, OperationWay.编辑))
+            {
+    <a class="zqui-text_primary m_r_10 btnEdit btnEdit" title="编辑"><i class="icon icon-lg icon-edit"></i></a>            }
+            @if (_.CanOperation(itemId, OperationWay.删除))
+            {
+    <a class="zqui-text_danger m_r_10 btnRemove" title="删除"><i class="icon icon-lg icon-trash"></i></a>            }
+        </td>
+    </tr>
+</tmpl>
+
+<tmpl id="viewTmpl">
+    <formGroup Element="@(_.Create(v => v.ImageUrl))">
+        <div class="zqui-upload zqui-upload_img">
+            <img id="ImageUrlViewId" data-defaultvalue="/Content/images/default-img.jpg" />
+        </div>
+    </formGroup>
+   
+    <div Element="@(_.Create(v => v.Title))"></div>
+    <div Element="@(_.Create(v => v.Subtitle))"></div>
+    <div Element="@(_.Create(v => v.OrderByNo))"></div>
+</tmpl>
+
+<toolbar key="请输入标题/副标题">
+</toolbar>
+
+<partial name="PageList" view-data="@_.ViewParam(new { NoAdd = isCanAdd })" />
+<partial name="PageDetail" />
+
+@section head{
+    <script src="~/Scripts/other/jquery.uploadifive.js"></script>
+    <script>
+        $(function(){
+            var tool = new Sail.RazorPage('大图设置',"@_.ApiName", "@_.Id");
+            var api = new Sail.ApiHelper("@_.ApiName");
+            tool.CreatePage({
+                handleName: "/api/Slideshow/GetListInfo",
+                titles: ["图片", "标题", "副标题", "排序号", "操作"]
+             }).Query();
+            $("#ImageUrlTrigger").iconUpload();
+
+            tool.on("after.Edit", function (sender, data) {
+                if (data.ImageUrl) {
+                    $("#ImageUrlModalId").attr("src", data.ImageUrl);
+                }
+            })
+
+            tool.on("after.View", function (sender, data) {
+                if (data.ImageUrl) {
+                    $("#ImageUrlViewId").attr("src", data.ImageUrl);
+                }
+            })
+
+            tool.PreSave = function ($form, data) {
+                data.Language = "@I18N.CurrentWEBLanguage.ToInt()";
+                return data;
+            };
+        })
+    </script>
+}

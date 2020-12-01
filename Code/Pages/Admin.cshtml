@@ -1,0 +1,85 @@
+﻿@page
+@{
+    var itemId = "4712c460-3de0-4490-a157-0ad70df2da5e";
+    var _ = new AdminPage<Admin>(ViewContext);
+    _.SetPage(itemId, "用户管理", "");
+    var isCanAdd = !_.CanOperation(itemId);
+}
+@section head{
+    <script type="text/javascript">
+     var tool;
+        $(function () {
+            var tool = new Sail.RazorPage("用户管理", "@_.ApiName", "@_.Id");
+            tool.CreatePage({
+                handleName: tool.GetApi("GetUserList"),
+                titles: ["登录账号", "用户名", "状态", "角色名称", "操作"],
+            }).Query(1);
+            $('#toolbar').before($('#tips'));
+
+        });
+    </script>
+}
+<tmpl id="listTmpl">
+    <tr>
+        <td>
+            <a class="btnView">{{:LoginId}}</a>
+        </td>
+        <td>{{:UserName}}</td>
+        <td>{{:~ToDisabledLabel(!IsDisabled) }}</td>
+        <td>{{:Role.RoleName}}</td>
+        <td style="width: 150px">
+            {{if IsDisabled}}
+            @if (_.CanOperation(itemId, OperationWay.其他))
+            {
+                <a class="zqui-text_success btnAct" data-act="enable" title="启用"><i class="icon icon-lg icon-play"></i></a>
+            }
+            @if (_.CanOperation(itemId, OperationWay.删除))
+            {
+                <a class="zqui-text_danger m_r_10 btnRemove" title="删除"><i class="icon icon-lg icon-trash"></i></a>
+            }
+            {{else}}
+            @if (_.CanOperation(itemId, OperationWay.编辑))
+            {
+                <a class="zqui-text_primary m_r_10 btnEdit btnEdit" title="编辑"><i class="icon icon-lg icon-edit"></i></a>
+            }
+            @if (_.CanOperation(itemId, OperationWay.其他))
+            {
+                <a class="zqui-text_warning btnAct" data-act="ResetPwd" title="重置密码"><i class="icon icon-lg  icon-refresh"></i></a>
+                <a class="zqui-text_danger btnAct" data-act="Disable" title="停用"><i class="icon icon-lg icon-stop"></i></a>
+            }
+            {{/if}}
+        </td>
+    </tr>
+</tmpl>
+<tmpl id="modalTmpl">
+    <div class="zqui-form">
+        <input type="text" Element="@(_.Create(v => v.LoginId))" />
+        <input type="text" Element="@(_.Create(v => v.UserName))" />
+        <select Element="@(_.Create(v => v.Role))" options="@Role.GetAllRole()">
+            <option value="">请选择</option>
+        </select>
+    </div>
+</tmpl>
+
+<tmpl id="viewTmpl">
+    <div Element="@(_.Create(v => v.LoginId))"></div>
+    <div Element="@(_.Create(v => v.UserName))"></div>
+    <div Element="@(_.Create(v => v.Role.RoleName))"></div>
+    <formGroup Element="@(_.Create(v => v.IsDisabled))" data-tmpl="inline">
+        <div class="zqui-form__text">
+            {{if !IsDisabled}}
+            <label class="zqui-label zqui-label_success-o">正常</label>
+            {{else}}
+            <label class="zqui-label zqui-label_danger-o">停用</label>
+            {{/if}}
+        </div>
+    </formGroup>
+    <div Element="@(_.Create(v => v.CreateTime))"></div>
+</tmpl>
+
+<toolbar key="输入用户名">
+    <select filter name="status" options="@(typeof(InfoStatus).EnumList("全部状态","-1"))"></select>
+</toolbar>
+
+<partial name="PageList" view-data="@_.ViewParam(new { NoAdd = isCanAdd })" />
+<partial name="PageDetail" />

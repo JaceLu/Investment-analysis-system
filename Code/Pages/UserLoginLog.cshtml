@@ -1,0 +1,30 @@
+﻿@page
+@{
+    var _ = new AdminPage<UserLoginLog>(ViewContext).SetPage("0a295a48-f745-4a49-81e7-0b657968588c", "用户登录日志", "");
+}
+@section head{
+    <script type="text/javascript">
+     var tool;
+        $(function () {
+            var tool = new Sail.RazorPage("用户登录日志", "@_.ApiName", "@_.Id");
+            tool.CreatePage({
+                titles: ["姓名", "登录时间", "登录IP"],
+            }).Query(1);
+        });
+    </script>
+}
+<tmpl id="listTmpl">
+    <tr>
+        <td>
+            {{>UserName}}
+        </td>
+        <td>{{ToDateTime2:LoginTime}}</td>
+        <td>{{>LoginIP}}</td>
+    </tr>
+</tmpl>
+
+<toolbar key="输入姓名">
+</toolbar>
+
+<partial name="PageList" view-data="@_.ViewParam(new { NoAdd=true})" />
+<partial name="PageDetail" />

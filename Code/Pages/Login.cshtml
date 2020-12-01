@@ -1,0 +1,154 @@
+﻿@page
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>@Param.Default.SiteName</title>
+    <link rel="shortcut icon" href="@Param.Default.Icon" type="image/x-icon" />
+    <link href="~/Content/manage.min.css" rel="stylesheet" />
+    <script src="~/Scripts/Base/jquery.min.js"></script>
+    <script src="~/Scripts/Base/jsviews.js"></script>
+    <script src="~/Scripts/Base/lodash.js"></script>
+    <script src="~/Scripts/Base/bootstrap.min.js"></script>
+    <script src="~/Scripts/other/exporting.js"></script>
+    <script src="~/Scripts/Base/jPlugin.js"></script>
+    @*<script src="~/Scripts/customs/Extends.js"></script>*@
+    <script>
+        validationEngine.SetConfig({ error: "zqui-has_error" });
+
+        MsgBox.SetConfig({
+            alertPrefix: "zqui-alert_",
+            container: '<div class="zqui-alert">\<div class="zqui-alert__hd"><i class="icon icon-exclamation-circle"></i></div>\<div class="zqui-alert__bd">\<p></p>\ </div>\</div>',
+            dismiss: '<div class="zqui-alert__ft">\<a class="zqui-close" data-dismiss="alert" aria-hidden="true"></a>\</div>'
+        });
+
+        $(function () {
+            $("#userLogin").InitLogin("admin", "/admin/index");
+        });
+
+    </script>
+    <style>
+
+        .zqui-login .zqui-login__content {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .zqui-btn_primary {
+            color: #fff;
+            background-color: #237ae4;
+            border-color: #237ae4;
+        }
+
+            .zqui-btn_primary:hover {
+                color: #fff;
+                background-color: #006aeb;
+                border-color: #006aeb;
+            }
+
+        .zqui-login-bg {
+            background-image: url(../Content/images/login.jpg);
+        }
+
+        .zqui-login .zqui-login__logo {
+            margin: 10rem auto 1rem auto;
+            color: #fff;
+        }
+        .zqui-login .zqui-login__title {
+            text-align:center;
+        }
+        .zqui-form-group {
+            margin-bottom: 1rem;
+        }
+        .zqui-login__form .zqui-form-group .zqui-form__input-icon > .icon{
+            top:0;
+        }
+        .zqui-login__form .zqui-form-group .zqui-form__input-icon .zqui-form__input{
+            height:2rem;
+        }
+    </style>
+</head>
+<!--[if lt  IE 10]>
+             <div style=" position: fixed;top: 0px;left: 0px;height:100%;width:100%;background: #000;z-index:10000">
+            <div style="height: 100%;margin: auto;position: relative;width: 840px;padding-top: 50px;z-index:10001">
+                <div style=" padding-top:20px;background-color:#fff;">
+                    <h2 style="text-align:center;font-size:24px;font-weight:bold;">很抱歉！您使用的浏览器版本过低，无法使用我们的网站，请升级后再试！</h2>
+                    <p style="text-align:center;font-size:18px;margin-top:20px;">建议使用以下浏览器或浏览版本的极速模式使用</p>
+                    <div style="width:840px;padding:0 20px;">
+                        <a href="/browser/ChromeStandaloneSetup.exe" style="float:left;padding:40px;text-align:center;text-decoration:none;" >
+                            <span><img src="/Content/images/google.png" style="width:100px;height:100px;padding:5px;" /></span>
+                            <p style="width:120px;text-align:center;margin-top:10px;">Google浏览器</p>
+                            <p style="width:120px;text-align:center;margin-top:10px;color:red;">（本地下载）</p>
+                        </a>
+
+                        <a href="http://chrome.360.cn/index.html" style="float:left;padding:40px;text-align:center;text-decoration:none;">
+                            <span><img src="/Content/images/360.png" style="width:100px;height:100px;padding:5px;" /></span>
+                            <p style="width:120px;text-align:center;margin-top:10px;">360极速浏览器</p>
+                            <p style="width:120px;text-align:center;margin-top:10px;color:red;">（强烈推荐）</p>
+                        </a>
+
+                        <a href="https://www.microsoft.com/zh-cn/edge" style="float:left;padding:40px;text-align:center;text-decoration:none;">
+                            <span><img src="/Content/images/edge.png" style="width:100px;height:100px" /></span>
+                            <p style="width:120px;text-align:center;margin-top:10px;">Edge浏览器</p>
+                        </a>
+
+                        <a href="http://browser.qq.com/" style="float:left;padding:40px;text-decoration:none;">
+                            <span><img src="/Content/images/qq.png" style="width:100px;height:100px" /></span>
+                            <p style="width:120px;text-align:center;margin-top:10px;">QQ浏览器</p>
+
+                        </a>
+                    </div>
+                    <div style="clear: both;"></div>
+                    <p style="text-align:center;font-size:18px;margin-bottom:20px;">如果您当前已使用360极速或360安全浏览器仍然能看到本页，可能由于未打开极速模式。</p>
+                    <p style="text-align:center;padding-bottom:20px;"><a href="http://se.360.cn/v6/help/help5.html" style="text-decoration:none;">如何打开极速模式?</a></p>
+                </div>
+            </div>
+        </div>
+        <![endif]-->
+<body class="zqui-login-bg">
+    <div class="zqui-login" style="padding-left: 40px; margin-top: -80px;">
+        <div class="zqui-login__logo">
+            <b style="font-size:2rem">@Param.Default.SiteName</b>
+        </div>
+        <div class="zqui-login__content" id="userLogin">
+            <div class="zqui-login__title">欢迎登录后台系统</div>
+            <div class="zqui-login__form">
+                <div class="zqui-form-group">
+                    <div class="zqui-form__label">用户名</div>
+                    <div class="zqui-form__input-icon">
+                        <i class="icon icon-phone"></i>
+                        <input class="zqui-form__input validate[required]" type="text" autocomplete="off" placeholder="登录账号" id="LoginId" />
+                    </div>
+                </div>
+                <div class="zqui-form-group">
+                    <div class="zqui-form__label">密码</div>
+                    <div class="zqui-form__input-icon">
+                        <i class="icon icon-lock"></i>
+                        <input class="zqui-form__input" type="password" autocomplete="off" placeholder="密码" id="Password" />
+                    </div>
+                </div>
+            </div>
+            <div class="zqui-login__actions">
+                <label>
+                    <span class="zqui-checkbox">
+                        <input type="checkbox" id="ckRemember" class="" data-valuetype="bool" />
+                        <span class="zqui-checkbox__inner"></span>
+                    </span>
+                    <span>记住账号</span>
+
+                </label>
+            </div>
+
+            <button id="btnLogin" class="zqui-btn zqui-btn_block zqui-btn_primary">
+                登录
+            </button>
+
+        </div>
+    </div>
+</body>
+</html>

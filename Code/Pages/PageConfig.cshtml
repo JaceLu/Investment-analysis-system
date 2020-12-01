@@ -1,0 +1,114 @@
+﻿@page
+@{
+    var itemId = this.Request.Query["menuId"].ToString();
+
+    var _ = new AdminPage<PageConfig>(ViewContext).SetPage(itemId, "首页参数", "");
+}
+
+@section head{
+    <script src="~/Scripts/other/jquery.uploadifive.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var id = null;
+            var tool = new Sail.RazorPage('首页参数',"@_.ApiName", "@_.Id");
+            var api = new Sail.ApiHelper("@_.ApiName");
+            $.get("/api/PageConfig/GetInfo",  function (data) {
+                if (data.Data) {
+                    var Data = data.Data;
+                    id = Data.Id;
+                    console.log("get==>", Data);
+                    $.ItemBinder("#divDetail").SetObject(Data);
+
+                    if (Data.BottomLogo) {
+                        $("#ColourfulLogoStr").attr("src", Data.ColourfulLogo);
+                    }
+                    if (Data.WXErcode) {
+                        $("#WhiteLogoStr").attr("src", Data.WhiteLogo);
+                    }
+                    if (Data.BottomLogo) {
+                        $("#BottomLogoStr").attr("src", Data.BottomLogo);
+                    } 
+                    if (Data.WXErcode) {
+                        $("#WXErcodeStr").attr("src", Data.WXErcode);
+                    }
+                }
+            });
+
+            $("#ColourfulLogoTrigger").iconUpload();
+            $("#WhiteLogoTrigger").iconUpload();
+            $("#BottomLogoTrigger").iconUpload();
+            $("#WXErcodeTrigger").iconUpload();
+           
+            $("#btnSaveTo").click(function () {
+            if (!$("#divDetail").CheckValidation()) {
+                MsgBox.Error('请确认所有的必填项都已经填入')
+                return false;
+            }
+            var data = $("#divDetail").GetJson();
+                data.Language = "@I18N.CurrentWEBLanguage.ToInt()";
+                console.log("id===>", id);
+                $.post(api.GetApi("Save"), { id: id, "": JSON.stringify(data) }, function (data) {
+                    MsgBox.Show(data, "保存成功", function () {
+                     
+                    });
+            });
+        });
+    })
+    </script>
+}
+
+<div id="divDetail">
+    <div class="zqui-portlet zqui-portlet_light">
+        <div class="zqui-portlet__hd">
+            <div class="zqui-caption zqui-title">
+                首页参数
+            </div>
+        </div>
+        <div class="zqui-portlet__bd">
+            <div class="SingleData">
+                <formGroup Element="@_.Create(x => x.ColourfulLogo)">
+                    <div class="zqui-upload zqui-upload_img">
+                        <img id="ColourfulLogoStr" data-defaultvalue="/Content/images/default-img.jpg" />
+                    </div>
+                    <div class="zqui-upload zqui-m_0" id="ColourfulLogoTrigger">
+                        <input type="hidden" class=" " id="ColourfulLogo" value="" />
+                    </div>
+                </formGroup>
+                <formGroup Element="@_.Create(x => x.WhiteLogo)">
+                    <div class="zqui-upload zqui-upload_img">
+                        <img id="WhiteLogoStr" data-defaultvalue="/Content/images/default-img.jpg" />
+                    </div>
+                    <div class="zqui-upload zqui-m_0" id="WhiteLogoTrigger">
+                        <input type="hidden" class=" " id="WhiteLogo" value="" />
+                    </div>
+                </formGroup>
+                <formGroup Element="@_.Create(x => x.BottomLogo)">
+                    <div class="zqui-upload zqui-upload_img">
+                        <img id="BottomLogoStr" data-defaultvalue="/Content/images/default-img.jpg" />
+                    </div>
+                    <div class="zqui-upload zqui-m_0" id="BottomLogoTrigger">
+                        <input type="hidden" class=" " id="BottomLogo" value="" />
+                    </div>
+                </formGroup>
+                <formGroup Element="@_.Create(x => x.WXErcode)">
+                    <div class="zqui-upload zqui-upload_img">
+                        <img id="WXErcodeStr" data-defaultvalue="/Content/images/default-img.jpg" />
+                    </div>
+                    <div class="zqui-upload zqui-m_0" id="WXErcodeTrigger">
+                        <input type="hidden" class=" " id="WXErcode" value="" />
+                    </div>
+                </formGroup>
+                @*<input type="text" Element="@_.Create(x => x.SiteName)" />*@
+                <input type="text" Element="@_.Create(x => x.Mail)" />
+                <input type="text" Element="@_.Create(x => x.Copyright)" />
+                @*<textarea type="text" Element="@_.Create(x => x.Icp)" />*@
+                <textarea type="text" Element="@_.Create(x => x.Location)" />
+                <textarea type="text" Element="@_.Create(x => x.Phone)" />
+                <input type="text" Element="@_.Create(x => x.QQ)" />
+            </div>
+            <div class="zqui-actionbtn zqui-actionbtn_border">
+                <button class="zqui-btn zqui-btn_primary" id="btnSaveTo"> 保存 </button>
+            </div>
+        </div>
+    </div>
+</div>

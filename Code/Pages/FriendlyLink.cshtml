@@ -1,0 +1,81 @@
+﻿@page
+@{
+    var type = this.Request.Query["type"].ToString().ToInt();
+    var itemId = this.Request.Query["menuId"].ToString();
+    var _ = new AdminPage<FriendlyLink>(ViewContext);
+    _.SetPage(itemId, "友情链接", "");
+    var isCanAdd = !_.CanOperation(itemId);
+}
+
+<tmpl id="modalTmpl">
+    <input type="text" Element="@(_.Create(x => x.Name))" />
+    <input type="text" Element="@(_.Create(x => x.Url))" />
+    <input type="text" Element="@(_.Create(x => x.OrderByNo))" />
+    <formGroup Element="@(_.Create(x => x.ImageUrl))">
+        <div class="zqui-upload zqui-upload_img">
+            <img id="ImageUrlModalId" data-defaultvalue="/Content/images/default-img.jpg" />
+        </div>
+        <div class="zqui-upload zqui-m_0" id="ImageUrlTrigger">
+            <input type="hidden" id="ImageUrl" />
+        </div>
+    </formGroup>
+</tmpl>
+
+<tmpl id="listTmpl">
+    <tr>
+        <td> {{:Name}} </td>
+        <td>{{:Url}}</td>
+        <td>
+            {{if ImageUrl}}
+            <img style="width:80px;height:40px" src="{{:ImageUrl}}"  />
+            {{/if}}
+        </td>
+        <td>{{:OrderByNo}}</td>
+        <td>
+            @if (_.CanOperation(itemId, OperationWay.编辑))
+            {
+                <a class="zqui-text_primary m_r_10 btnEdit btnEdit" title="编辑"><i class="icon icon-lg icon-edit"></i></a>
+            }
+            @if (_.CanOperation(itemId, OperationWay.删除))
+            {
+                <a class="zqui-text_danger m_r_10 btnRemove" title="删除"><i class="icon icon-lg icon-trash"></i></a>
+            }
+        </td>
+    </tr>
+</tmpl>
+
+<toolbar key="请输入名称">
+    <input type="hidden" name="type" data-defaultvalue="@type" />
+</toolbar>
+
+<partial name="PageList" view-data="@_.ViewParam(new { NoAdd = isCanAdd })" />
+<partial name="PageDetail" />
+
+@section head{
+    <script src="~/Scripts/other/jquery.uploadifive.js"></script>
+    <script>
+        $(function(){
+            var tool = new Sail.RazorPage('友情链接',"@_.ApiName", "@_.Id");
+            tool.CreatePage({
+                handleName: "/api/FriendlyLink/GetListInfo",
+                titles: ["名称", "友链地址","logo", "排序号", "操作"]
+             }).Query();
+            $("#ImageUrlTrigger").iconUpload();
+
+            tool.on("after.Edit", function (sender, data) {
+                if (data.ImageUrl) {
+                    $("#ImageUrlModalId").attr("src", data.ImageUrl);
+                }
+            })
+             tool.PreSave = function ($form, data) {
+                 data.Language = "@I18N.CurrentWEBLanguage.ToInt()";
+                 console.log("123", data.ImageUrl);
+                 if (data.ImageUrl == '') {
+                     MsgBox.Error('请上传logo！');
+                     return false;
+                 }
+                return data;
+            };
+        })
+    </script>
+}

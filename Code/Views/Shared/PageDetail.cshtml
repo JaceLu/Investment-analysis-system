@@ -1,0 +1,36 @@
+﻿@using System.Web
+@using Investment.Code.TagHelpers
+@{
+    var buttons = (IEnumerable<HtmlElement>)ViewData["footButtons"] ?? new List<HtmlElement>();
+    var Headbuttons = (IEnumerable<HtmlElement>)ViewData["headButtons"] ?? new List<HtmlElement>();
+}
+<div id="divDetail" class="zqui-portlet zqui-portlet_light" style="display: none">
+    <div class="zqui-portlet__hd">
+        <div class="zqui-caption zqui-return zqui-title detailTitle">
+            <button class="zqui-btn zqui-btn_default btnReturn"><i class="icon icon-arrow-left"></i>返回</button>
+
+            @foreach (var buttn in Headbuttons)
+            {
+                <button class="zqui-btn @buttn.Class" id="@buttn.Id">@Html.Raw(buttn.InnertHtml)</button>
+            }
+            <span>
+                @(ViewData["PageTitle"])详情
+            </span>
+        </div>
+    </div>
+    <div class="zqui-portlet__bd mainForm">
+        <div class="form-body zqui-form"></div>
+        <div class="zqui-actionbtn zqui-actionbtn_border">
+            <button class="zqui-btn zqui-btn_primary" id="btnSave">保存</button>
+            <button class="zqui-btn zqui-btn_default btnReturn" id="btnCancel">取消</button>
+            @foreach (var buttn in buttons)
+            {
+                <button class="zqui-btn zqui-btn_default   @(buttn.Class) " id="@buttn.Id">
+                    @Html.Raw(buttn.InnertHtml)
+                    @buttn.Name
+                </button>
+            }
+        </div>
+    </div>
+
+</div>

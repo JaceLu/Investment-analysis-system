@@ -1,0 +1,77 @@
+﻿@using Sail.Web
+@model LayoutBase
+<div class="zqui-sidebar mainMenu">
+    <ul class="zqui-menus">
+        <li class="home topMenu">
+            <a href="@Model.IndexUrl">
+                <i class="icon icon-home"></i>
+                <span class="zqui-title">主页</span>
+            </a>
+        </li>
+        @if (Model.Menus != null)
+        {
+            foreach (var item in Model.Menus)
+            {
+                <li class="@(item.SubItems.Count > 0?"topMenu":"")" data-top="@item.ItemId.ToLower()">
+                    @if (item.SubItems.Count > 0)
+                    {
+                        <a>
+                            <i class="@item.ClassName"></i>
+                            <span class="zqui-title">@item.ItemName</span>
+                            <span class="zqui-arrow"></span>
+                        </a>
+                        <ul class="zqui-submenus">
+                            @foreach (HMenuItem subItem in item.SubItems)
+                            {
+                                <li>
+                                    <a href="@subItem.Url" data-itemid="@subItem.ItemId.ToLower()">@subItem.ItemName</a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <a href="@item.Url" data-itemid="@item.ItemId.ToLower()">
+                            <i class="@item.ClassName test"></i>
+                            @item.ItemName
+                        </a>
+                    }
+                </li>
+            }
+        }
+    </ul>
+</div>
+<script>
+        $(function () {
+            var $sidebar = $(".zqui-sidebar");
+            //菜单展开收缩
+            $sidebar.on("click", "li.topMenu", function () {
+                var $this = $(this);
+                var $submenu = $this.find('.zqui-submenus');
+                //$submenu.toggle();
+                $this.toggleClass("active");
+                console.log("toggle");
+            });
+
+            var current = "@(ViewData["ItemId"])";
+            console.log(current)
+            if (current) {
+                var $item = $(".zqui-sidebar a[data-itemid=" + current + "]");
+
+                if ($item.length === 0) {
+               //     window.location.href = "/nopower";//todo:unblock
+                }
+
+                var isToptic = $item.closest("ul").hasClass("zqui-menus");
+                if (isToptic) {
+                    $item.closest("li").addClass("zqui-menus_selected");
+                }
+                else {
+                    $item.closest("li").addClass("active zqui-menus_selected");
+                    $item.closest(".topMenu").addClass("active zqui-menus_selected");
+                }
+            }
+            else
+                $(".zqui-sidebar .home").addClass("zqui-menus_selected");
+        });
+</script>

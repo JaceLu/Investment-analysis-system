@@ -1,0 +1,263 @@
+[
+  {
+    "ClassName": "icon icon-sitemap",
+    "ItemId": "9777007a-a788-4c70-86eb-15522f84b9a5",
+    "ItemName": "栏目管理",
+    "Url": "/Admin/Category?menuId=9777007a-a788-4c70-86eb-15522f84b9a5",
+    "SubPermission": [
+      {
+        "Key": "9777007a-a788-4c70-86eb-15522f84b9a57137c81c5fe34158b392883abfe98f58",
+        "Name": "新增"
+      },
+      {
+        "Key": "9777007a-a788-4c70-86eb-15522f84b9a567186728efda448ab2e1cd1ccb1c6f21",
+        "Name": "编辑"
+      },
+      {
+        "Key": "9777007a-a788-4c70-86eb-15522f84b9a5c4637e785e0e412e85445afa29289750",
+        "Name": "删除"
+      }
+    ]
+  },
+  {
+    "ClassName": "icon icon-newspaper-o",
+    "ItemId": "bd8cba1e-9ccd-4105-9851-5f2e2d6af1c3",
+    "ItemName": "新闻管理",
+    "Url": "/Admin/News?type=0&menuId=bd8cba1e-9ccd-4105-9851-5f2e2d6af1c3&title=新闻管理",
+    "SubPermission": [
+      {
+        "Key": "bd8cba1e-9ccd-4105-9851-5f2e2d6af1c37137c81c5fe34158b392883abfe98f58",
+        "Name": "新增"
+      },
+      {
+        "Key": "bd8cba1e-9ccd-4105-9851-5f2e2d6af1c367186728efda448ab2e1cd1ccb1c6f21",
+        "Name": "编辑"
+      },
+      {
+        "Key": "bd8cba1e-9ccd-4105-9851-5f2e2d6af1c3c4637e785e0e412e85445afa29289750",
+        "Name": "删除"
+      }
+    ]
+  },
+  {
+    "ClassName": "icon icon-volume-control-phone",
+    "ItemId": "0a295a48-f745-4a49-81e7-0b657968588c",
+    "ItemName": "展馆介绍",
+    "Url": "/Admin/News?type=1&menuId=0a295a48-f745-4a49-81e7-0b657968588c&title=展馆介绍",
+    "SubPermission": [
+      {
+        "Key": "0a295a48-f745-4a49-81e7-0b657968588c7137c81c5fe34158b392883abfe98f58",
+        "Name": "新增"
+      },
+      {
+        "Key": "0a295a48-f745-4a49-81e7-0b657968588c67186728efda448ab2e1cd1ccb1c6f21",
+        "Name": "编辑"
+      },
+      {
+        "Key": "0a295a48-f745-4a49-81e7-0b657968588cc4637e785e0e412e85445afa29289750",
+        "Name": "删除"
+      }
+    ]
+  },
+  {
+    "ClassName": "icon icon-flag-checkered",
+    "ItemId": "596694B7-655B-4134-A7AA-29DC26A8339C",
+    "ItemName": "展馆管理",
+    "Url": "/Admin/Dict?menuId=596694B7-655B-4134-A7AA-29DC26A8339C",
+    "SubPermission": [
+      {
+        "Key": "596694B7-655B-4134-A7AA-29DC26A8339C7137c81c5fe34158b392883abfe98f58",
+        "Name": "新增"
+      },
+      {
+        "Key": "596694B7-655B-4134-A7AA-29DC26A8339C67186728efda448ab2e1cd1ccb1c6f21",
+        "Name": "编辑"
+      }
+      //{
+      //  "Key": "596694B7-655B-4134-A7AA-29DC26A8339Cc4637e785e0e412e85445afa29289750",
+      //  "Name": "删除"
+      //}
+    ]
+  },
+  {
+    "ClassName": "icon icon-calendar",
+    "ItemId": "ac6f165f-4b79-4c1a-b21b-09c9f50ccf10",
+    "ItemName": "展馆日程",
+    "Url": "/Admin/PavilionSchedule?menuId=ac6f165f-4b79-4c1a-b21b-09c9f50ccf10",
+    "SubPermission": [
+      {
+        "Key": "ac6f165f-4b79-4c1a-b21b-09c9f50ccf107137c81c5fe34158b392883abfe98f58",
+        "Name": "新增"
+      },
+      {
+        "Key": "ac6f165f-4b79-4c1a-b21b-09c9f50ccf1067186728efda448ab2e1cd1ccb1c6f21",
+        "Name": "编辑"
+      },
+      {
+        "Key": "ac6f165f-4b79-4c1a-b21b-09c9f50ccf10c4637e785e0e412e85445afa29289750",
+        "Name": "删除"
+      }
+    ]
+  },
+  {
+    "ItemId": "997a3dfe-dc61-4a87-99f6-bee6655fe862",
+    "ItemName": "在线预约",
+    "ClassName": "icon icon-handshake-o",
+    "Url": "#",
+    "SubItems": [
+      {
+        "ClassName": "",
+        "ItemId": "1ae219d0-862b-4c2a-b51f-99dc4cd9905e",
+        "ItemName": "档期预约",
+        "Url": "/Admin/AppointmentMessage?type=0&menuId=1ae219d0-862b-4c2a-b51f-99dc4cd9905e&title=档期预约",
+        "SubPermission": [
+          {
+            "Key": "1ae219d0-862b-4c2a-b51f-99dc4cd9905e388f6c720d504f33b697ca3021f1fb3f",
+            "Name": "导出"
+          }
+        ]
+      },
+      {
+        "ClassName": "",
+        "ItemId": "D9EA717C-6A9E-4EF1-BB50-7DC62BEAB542",
+        "ItemName": "考察预约",
+        "Url": "/Admin/AppointmentMessage?type=1&menuId=D9EA717C-6A9E-4EF1-BB50-7DC62BEAB542&title=考察预约",
+        "SubPermission": [
+          {
+            "Key": "D9EA717C-6A9E-4EF1-BB50-7DC62BEAB542388f6c720d504f33b697ca3021f1fb3f",
+            "Name": "导出"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "ItemId": "99dd11c7-710a-4705-8fc5-f046ecf4c6dd",
+    "ItemName": "首页管理",
+    "ClassName": "icon icon-desktop",
+    "Url": "#",
+    "SubItems": [
+      {
+        "ClassName": "",
+        "ItemId": "87B061A5-B72A-488C-808D-BCB1ECAB2F80",
+        "ItemName": "首页参数",
+        "Url": "/Admin/PageConfig?menuId=87B061A5-B72A-488C-808D-BCB1ECAB2F80",
+        "SubPermission": [
+          //{
+          //  "Key": "87B061A5-B72A-488C-808D-BCB1ECAB2F807137c81c5fe34158b392883abfe98f58",
+          //  "Name": "新增"
+          //},
+          {
+            "Key": "87B061A5-B72A-488C-808D-BCB1ECAB2F8067186728efda448ab2e1cd1ccb1c6f21",
+            "Name": "编辑"
+          }
+        ]
+      },
+      {
+        "ClassName": "",
+        "ItemId": "77200c60-9620-4fc4-a0b9-43af38657bb4",
+        "ItemName": "轮播图",
+        "Url": "/Admin/Slideshow?menuId=77200c60-9620-4fc4-a0b9-43af38657bb4",
+        "SubPermission": [
+          {
+            "Key": "77200c60-9620-4fc4-a0b9-43af38657bb47137c81c5fe34158b392883abfe98f58",
+            "Name": "新增"
+          },
+          {
+            "Key": "77200c60-9620-4fc4-a0b9-43af38657bb467186728efda448ab2e1cd1ccb1c6f21",
+            "Name": "编辑"
+          },
+          {
+            "Key": "77200c60-9620-4fc4-a0b9-43af38657bb4c4637e785e0e412e85445afa29289750",
+            "Name": "删除"
+          }
+        ]
+      },
+      {
+        "ClassName": "",
+        "ItemId": "f25e953b-4a36-4745-97a0-a73b773138dc",
+        "ItemName": "友情链接",
+        "Url": "/Admin/FriendlyLink?menuId=f25e953b-4a36-4745-97a0-a73b773138dc",
+        "SubPermission": [
+          {
+            "Key": "f25e953b-4a36-4745-97a0-a73b773138dc7137c81c5fe34158b392883abfe98f58",
+            "Name": "新增"
+          },
+          {
+            "Key": "f25e953b-4a36-4745-97a0-a73b773138dc67186728efda448ab2e1cd1ccb1c6f21",
+            "Name": "编辑"
+          },
+          {
+            "Key": "f25e953b-4a36-4745-97a0-a73b773138dcc4637e785e0e412e85445afa29289750",
+            "Name": "删除"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "ItemId": "42c5d890-b566-48cf-8694-2230e580b83a",
+    "ItemName": "系统设置",
+    "ClassName": "icon icon-cogs",
+    "Url": "#",
+    "SubItems": [
+      {
+        "ClassName": "",
+        "ItemId": "936d8a77-e8fc-49aa-90b8-65815374f064",
+        "ItemName": "系统管理",
+        "Url": "/Admin/Param",
+        "SubPermission": [
+          //{
+          //  "Key": "936d8a77-e8fc-49aa-90b8-65815374f0647137c81c5fe34158b392883abfe98f58",
+          //  "Name": "新增"
+          //},
+          {
+            "Key": "936d8a77-e8fc-49aa-90b8-65815374f06467186728efda448ab2e1cd1ccb1c6f21",
+            "Name": "编辑"
+          }
+        ]
+      },
+      {
+        "ClassName": "",
+        "ItemId": "4712c460-3de0-4490-a157-0ad70df2da5e",
+        "ItemName": "用户管理",
+        "Url": "/Admin/Admin",
+        "SubPermission": [
+          {
+            "Key": "4712c460-3de0-4490-a157-0ad70df2da5e7137c81c5fe34158b392883abfe98f58",
+            "Name": "新增"
+          },
+          {
+            "Key": "4712c460-3de0-4490-a157-0ad70df2da5e67186728efda448ab2e1cd1ccb1c6f21",
+            "Name": "编辑"
+          },
+          {
+            "Key": "4712c460-3de0-4490-a157-0ad70df2da5ec4637e785e0e412e85445afa29289750",
+            "Name": "删除"
+          }
+        ]
+      },
+      {
+        "ClassName": "",
+        "ItemId": "2aa7abe3-45af-4f8a-9c9d-11722e6bca63",
+        "ItemName": "角色管理",
+        "Url": "/Admin/Role",
+        "SubPermission": [
+          {
+            "Key": "2aa7abe3-45af-4f8a-9c9d-11722e6bca637137c81c5fe34158b392883abfe98f58",
+            "Name": "新增"
+          },
+          {
+            "Key": "2aa7abe3-45af-4f8a-9c9d-11722e6bca6367186728efda448ab2e1cd1ccb1c6f21",
+            "Name": "编辑"
+          },
+          {
+            "Key": "2aa7abe3-45af-4f8a-9c9d-11722e6bca63c4637e785e0e412e85445afa29289750",
+            "Name": "删除"
+          }
+        ]
+      }
+
+    ]
+  }
+]

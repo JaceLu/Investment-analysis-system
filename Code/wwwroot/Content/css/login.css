@@ -1,0 +1,95 @@
+﻿html, body {
+    height: 100%;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.login {
+    height: 100%;
+}
+
+.login__aside {
+    width: 600px;
+}
+
+.login__content {
+    padding: 260px 20px 0 30px;
+    width: 360px;
+    margin: 0 auto;
+}
+
+.login_bg {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    vertical-align: middle;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.login__logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+    .login__logo img {
+        margin: 0 auto;
+        height: 38px;
+    }
+
+.login__title {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.checkbox-outline {
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 15px 0;
+}
+
+    .checkbox-outline input[type=checkbox] {
+        vertical-align: middle;
+        margin: -2px 0 0;
+    }
+
+.forget-password {
+    margin: 15px 0;
+    display: inline-block;
+}
+
+.login__welcome {
+    color: #ffffff;
+    font-size: 36px;
+    font-weight: 500;
+    margin-bottom: 2rem;
+}
+
+.login__msg {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: normal;
+}
+
+@media (max-width: 992px) {
+    .login__aside {
+        width: 100%;
+    }
+
+    .login__content {
+        width: 100%;
+        padding: 50px 20px 0 20px;
+        max-width: 360px;
+    }
+
+    .login_bg {
+        display: none;
+    }
+}

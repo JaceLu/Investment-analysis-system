@@ -1,0 +1,81 @@
+﻿@page
+@{
+
+}
+@section head{
+    <style>
+        .come {
+            position: relative;
+            display: block;
+            margin: 0 auto;
+            margin-top: 100px;
+            min-width: 900px;
+            max-width: 1000px;
+            height: 500px;
+            background-repeat: no-repeat;
+            -webkit-box-shadow: 0 0 20px 0 rgba(62,28,131,0.2);
+            -o-box-shadow: 0 0 20px 0 rgba(62,28,131,0.2);
+            box-shadow: 0 0 20px 0 rgba(62,28,131,0.2);
+        }
+
+        .come__title {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 500px;
+            height: 300px;
+            margin-top: -150px;
+            margin-left: -250px;
+            text-align: center;
+        }
+
+        .come__pic {
+            width: 100%;
+            height: 100%;
+        }
+
+        .come__title h1 {
+            font-size: 50px;
+            font-weight: bold;
+            color: #888;
+        }
+
+        .come__title h2 {
+            margin-top: 20px;
+            font-size: 34px;
+            font-weight: 500;
+            color: #7c7c7c;
+            letter-spacing: 10px;
+        }
+
+        .come__title h3 {
+            margin-bottom: 30px;
+            font-size: 18px;
+            font-weight: 500;
+            color: #2196F3;
+        }
+
+        .come__title p {
+            margin-top: 40px;
+            font-size: 16px;
+            color: #2196F3;
+        }
+    </style>
+}
+<div class="come">
+    <img class="come__pic" src="/Content/images/bg_come.jpg" />
+    <div class="come__title">
+        <h3>当前游客访问总次数：<span id="Visitors"></span></h3>
+        <h1>欢迎使用</h1>
+        <h2>@Param.Default.SiteName 管理系统</h2>
+        <p>PS.点击左侧菜单使用吧！！！</p>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $.get("/api/Param/GetBaseValue", function (data) {
+            $("#Visitors").html(data.Data);
+        });
+    });
+</script>

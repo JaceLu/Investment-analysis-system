@@ -1,0 +1,305 @@
+﻿@page
+@{
+    var itemId = "2aa7abe3-45af-4f8a-9c9d-11722e6bca63";
+    var _ = new AdminPage<Role>(ViewContext);
+    _.SetPage(itemId, "角色管理", "");
+    var isCanAdd = !_.CanOperation(itemId);
+}
+
+@section head{
+
+    <script>
+        var tool;
+        $(function () {
+           tool = new Sail.RazorPage("角色信息", "@_.ApiName", "@_.Id");
+            $('#toolbar').before($('#tips'));
+            tool.CreatePage({
+                handleName:"/Api/Role/GetUserRoleList",
+                titles: ["角色名称","排序号", "备注",  "操作"],
+                titleWidth: [0, 0, 120]
+        }).Query();
+
+        $("body").on("click", ".shrink", function () {
+            var $this =$(this) ;
+            $this.closest("li").find("ul").toggle();
+            $this.find("i").toggleClass("fa-caret-right fa-caret-down");
+        });
+        $("[name='key']").EnterToClick("#btnQuery");
+
+        tool.PreSave = function (form, data) {
+            console.log("OrderByNo")
+
+            if ($("#OrderByNo").val() == "" || $("#OrderByNo").val() == null) {
+                data.OrderByNo = 0; //   $("#OrderByNo").val(0);
+            }
+            var modules = [];
+            $("input[type=checkbox][name=powers]:checked").each(function(i, o) {
+                var ss = $.view(o).data;
+                modules.push({ Key: ss.Id, Name: ss.Title });
+            });
+            data.Powers = modules;
+            data.DeviceMold = [];
+            $("[name=DeviceMold]").each(function (i, v) {
+                if ($(v).prop("checked")) {
+                    data.DeviceMold.push(parseInt($(v).val()));
+
+                }
+            });
+            return data;
+        };
+
+        function setValue(data,val) {
+            if (data) {
+                $.each(data, function (i, v) {
+                    $("#powersx #" + v.Key).prop('checked', val);
+                });
+            }
+        };
+
+        tool.on("after.Edit", function (form, data) {
+            setValue(data.Powers, true);
+            $("[name=DeviceMold]").prop("checked", false)
+            $("[name=DeviceMold]").each(function (i, v) {
+                var value = $(v).val();
+                for (var j = 0; j < data.DeviceMold.length; j++) {
+                    if (data.DeviceMold[j] == value) {
+                        $(v).prop('checked', true);
+                    }
+                }
+            });
+        });
+
+        $.get(tool.GetApi("menus"),function (data) {
+            if (data.IsSuccess) {
+                console.log("123456=>", data.Data);////
+                    $("#powersx").Link("#powerTmpl", data.Data);
+
+                    $("input[type=checkbox]").click(function () {
+                        var $this = $(this);
+                        var ss = $this.closest("li");
+                        if (ss.children("ul").length > 0) {
+                            ss.find(".zq-checkbox input[type=checkbox]").prop("checked",$(this).prop("checked"));
+                        } else {
+                            if ($this.prop("checked")) {
+                                $this.closest("li").parents("li").each(function(i, o) {
+                                    $(o).children(".zq-tree__content").find("input[type=checkbox]")
+                                        .prop("checked", true);
+                                });
+                            }
+                            else {
+                                $this.closest("li").parents("li").each(function(i, o) {
+                                    $(o).children(".zq-tree__content").find("input[type=checkbox]")
+                                        .prop("checked", false);
+                                });
+
+                                $this.closest("li").siblings().each(function (i, o) {
+                                    if ($(o).children(".zq-tree__content").find("input[type=checkbox]").prop("checked")) {
+                                        $(this).closest("li").parents("li").each(function(i, o) {
+                                            $(o).children(".zq-tree__content").find("input[type=checkbox]").prop("checked", true);
+                                        });
+                                        return false;
+                                    }
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    <style>
+
+        .zq-tree {
+            display: block;
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            list-style-image: none;
+        }
+
+        .zq-tree_sm {
+            font-size: 12px;
+        }
+
+            .zq-tree_sm .zq-tree__content {
+                padding: 0;
+            }
+
+            .zq-tree_sm .zq-tree__icon {
+                width: 1.143rem;
+            }
+
+        .zq-tree__content {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            padding: .25rem 0;
+        }
+
+        .map__list .zq-tree__content.active {
+            background-color: #09134b;
+            -webkit-transition: all .3s;
+            transition: all .3s;
+        }
+
+            .map__list .zq-tree__content.active .zq-tree__bd {
+                color: #fff;
+            }
+
+        .zq-tree__content:hover {
+            -webkit-transition: background-color .3s ease;
+            transition: background-color .3s ease;
+            text-decoration: none;
+            color: #333;
+            background-color: #f7f8fa;
+        }
+
+        .zq-tree__content.active {
+            color: #fff;
+            background-color: #5d78ff;
+            -webkit-transition: all .3s;
+            transition: all .3s;
+        }
+
+            .zq-tree__content.active .zq-tree__bd {
+                color: inherit;
+            }
+
+
+        .zq-tree__hd {
+            width: 1.5rem;
+            margin-right: .5rem;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .zq-tree__bd {
+            color: #74788d;
+            font-size: inherit;
+            font-weight: 500;
+            padding-right: 1.25rem;
+            -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            -webkit-transition: color .3s ease;
+            transition: color .3s ease;
+        }
+
+        a.zq-tree__bd {
+            cursor: pointer;
+        }
+
+        .zq-tree__bd .zq-checkbox {
+            width: 18px;
+            height: 18px;
+            line-height: 18px;
+        }
+
+        .zq-tree__icon {
+            font-size: larger;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            text-align: center;
+        }
+
+        .zq-tree .zq-tree .zq-tree__item {
+            margin-left: 24px;
+        }
+
+        .zq-tree .zq-tree {
+            display: none;
+        }
+
+        .zq-tree .zq-tree__item.active > .zq-tree {
+            display: block;
+        }
+        .zq-font-warning {
+            color: #ffb822 !important;
+        }
+
+    </style>
+    <tmpl id="listTmpl">
+        <tr>
+            <td>
+                {{>RoleName}}
+            </td>
+            <td>
+                {{>OrderByNo}}
+            </td>
+            <td>
+                {{>Memo}}
+            </td>
+            <td style="width: 150px">
+                @if (_.CanOperation(itemId, OperationWay.编辑))
+                {
+                     <a class="zqui-text_primary m_r_10 btnEdit btnEdit" title="编辑"><i class="icon icon-lg icon-edit"></i></a>
+                }
+                @if (_.CanOperation(itemId, OperationWay.删除))
+                {
+                     <a class="zqui-text_danger m_r_10 btnRemove" title="删除"><i class="icon icon-lg icon-trash"></i></a>
+                }
+            </td>
+        </tr>
+    </tmpl>
+
+    <tmpl id="modalTmpl">
+        <div class="zq-form">
+            <input type="text" Element="@(_.Create(v => v.RoleName))" class="unedit" />
+            <input type="text" Element="@(_.Create(v => v.OrderByNo))" class="unedit " />
+            <textarea Element="@(_.Create(v => v.Memo))"></textarea>
+            <div class="zqui-form-group ">
+            <div class="zqui-form__label">
+                人员权限列表:</div>
+            <div class="zqui-form__element">
+                <ul class="zq-tree" id="powersx">
+                    <li></li>
+                </ul>
+                </div></div>
+        </div>
+    </tmpl>
+
+    <tmpl id="powerTmpl">
+
+        <li class="zq-tree__item active">
+            <div class="zq-tree__content">
+                <div class="zq-tree__hd shrink">
+                    {{if SubItems.length>0}}
+                    <i class="fa fa-caret-down "></i>
+                    {{/if}}
+                </div>
+                <div class="zq-tree__bd">
+                    <label class="zq-checkbox zq-checkbox_uncertainty">
+                        <input type="checkbox" id="{{>Id}}" value="{{>Id}}" name="powers" />
+                        <span class="zq-checkbox__inner"></span>
+                    </label>
+                    {{if SubItems.length>0}}
+                    <i class="zq-font-warning zq-tree__icon {{>Icon}}"></i>
+                    {{/if}}
+
+                    {{>Title}}
+                </div>
+            </div>
+            <ul class="zq-tree">
+                {{if SubItems.length>0}}
+                {{for SubItems}}
+                {{include tmpl="#powerTmpl"/}}
+                {{/for}}
+                {{/if}}
+            </ul>
+        </li>
+
+    </tmpl>
+}
+
+<toolbar key="输入角色名称">
+</toolbar>
+
+<partial name="PageList" view-data="@_.ViewParam(new { NoAdd = isCanAdd })" />
+<partial name="PageDetail" />

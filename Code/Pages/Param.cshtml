@@ -1,0 +1,82 @@
+﻿@page
+@{
+    var _ = new AdminPage<Param>(ViewContext).SetPage("936d8a77-e8fc-49aa-90b8-65815374f064", "系统设置", "");
+}
+@section head{
+    <script src="~/Scripts/other/jquery.uploadifive.js"></script>
+    <script type="text/javascript">
+    $(function () {
+        var api = new Sail.ApiHelper("@_.ApiName");
+        $.get(api.GetApi("getParam"),
+            function (data) {
+                var Data = data.Data;
+                $.ItemBinder("#divDetail").SetObject(Data);
+                if (Data.Logo) {
+                    $("#LogoStr").attr("src", Data.Logo);
+                }
+                if (Data.Icon) {
+                    $("#IconStr").attr("src", Data.Icon);
+                }
+                
+            });
+        $("#LogoTrigger").iconUpload();
+        $("#IconTrigger").iconUpload();
+        
+
+        $("#btnSave").click(function () {
+            if (!$("#divDetail").CheckValidation()) {
+                MsgBox.Error('请确认所有的必填项都已经填入')
+                return false;
+            }
+            var data = $("#divDetail").GetJson();
+
+            $.post(api.GetApi("Save"), { "": JSON.stringify(data) }, function (data) {
+                ShowMessage(data);
+                //if (data.IsSuccess) {
+                //    location.reload();
+                //}
+            });
+        });
+    })
+    </script>
+}
+
+<div id="divDetail">
+    <div class="zqui-portlet zqui-portlet_light">
+        <div class="zqui-portlet__hd">
+            <div class="zqui-caption zqui-title">
+                系统设置
+            </div>
+        </div>
+        <div class="zqui-portlet__bd">
+            <div class="SingleData">
+                <formGroup Element="@_.Create(x => x.Logo)">
+                    <div class="zqui-upload zqui-upload_img">
+                        <img id="LogoStr" data-defaultvalue="/Content/images/default-img.jpg" />
+                    </div>
+                    <div class="zqui-upload zqui-m_0" id="LogoTrigger">
+                        <input type="hidden" class=" " id="Logo" value="" />
+                    </div>
+                </formGroup>
+                <formGroup Element="@_.Create(x => x.Icon)">
+                    <div class="zqui-upload zqui-upload_img">
+                        <img id="IconStr" data-defaultvalue="/Content/images/default-img.jpg" />
+                    </div>
+                    <div class="zqui-upload zqui-m_0" id="IconTrigger">
+                        <input type="hidden" class=" " id="Icon" value="" />
+                    </div>
+                </formGroup>
+                <input type="text" Element="@_.Create(x => x.SiteName)" />
+                <input type="text" Element="@_.Create(x => x.SiteName_EN)" />
+                @*<input type="text" Element="@_.Create(x => x.Host)" />*@
+                <textarea type="text" Element="@_.Create(x => x.Keywords)" />
+                <textarea type="text" Element="@_.Create(x => x.Description)" />
+                <input type="text" Element="@_.Create(x => x.BaseValue)" />
+                <input type="text" Element="@_.Create(x => x.CoefficientValues)" />
+            </div>
+            <div class="zqui-actionbtn zqui-actionbtn_border">
+                <button class="zqui-btn zqui-btn_primary" id="btnSave"> 保存 </button>
+            </div>
+        </div>
+    </div>
+</div>

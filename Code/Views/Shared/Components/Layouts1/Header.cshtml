@@ -1,0 +1,93 @@
+﻿@using Sail.Web
+@using Investment.Models
+@using Investment.Code
+@model LayoutBase
+
+<div class="zqui-header">
+    <div class="zqui-wrap">
+        <div class="zqui-logo">
+            <img src="@(string.IsNullOrEmpty(Param.Default.Logo)?"/Content/images/logo.png":Param.Default.Logo)" />
+            <a>
+                @(I18N.WEBIsCN ? Param.Default.SiteName : Param.Default.SiteName_EN)
+            </a>
+
+        </div>
+        <div style="margin:18px" class="zqui-btn-group">
+            <a class="zqui-btn @(I18N.WEBIsCN ? "zqui-btn_primary" : "zqui-btn_default")" id="langluge_CN">中文管理</a>
+            <a class="zqui-btn @(I18N.WEBIsCN ? "zqui-btn_default" : "zqui-btn_primary")" id="langluge_EN">英文管理</a>
+        </div>
+        @*<div style="margin:18px" class="zqui-btn zqui-btn_primary" id="langluge">@(I18N.WEBIsCN?"中文管理":"英文管理")</div>*@
+        <ul class="zqui-header-menu">
+            <li class="zqui-header-menu__item zqui-dropdown zqui-dropdown_arrow" style="display:none">
+                <a class="zqui-dropdown__toggle">
+                    <i class="icon icon-bell"></i>
+                    <span class="zqui-badge zqui-badge_primary">
+                    </span>
+                </a>
+            </li>
+            <li class="zqui-header-menu__item zqui-dropdown zqui-dropdown-user zqui-dropdown_arrow">
+                <a class="zqui-dropdown__toggle">
+                    <span class="username">@(Model.User?.UserName)</span>
+                    @if (!string.IsNullOrEmpty(ViewData["UserIcon"].ToString()))
+                    {
+                        <img src="@(ViewData["UserIcon"])" />
+                    }
+                </a>
+                <ul class="zqui-dropdown__menu">
+                    <li class="zqui-dropdown__item" id="btnChangePwd">
+                        <a>修改密码</a>
+                    </li>
+                    <li class="zqui-dropdown__item" id="btnLogout">
+                        <a>退出登录</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<script>
+        $(function () {
+
+            var userApi = new Sail.ApiHelper("@Model.ApiName");
+            function toLogin() {
+                window.location.href = '@(Model.LoginUrl)';
+            }
+
+            $("#btnLogout").click(function () {
+                $.post(userApi.GetApi("logout"));
+                toLogin();
+            });
+
+            var passwordModal = $.CreateModal("changePwd",
+                {
+                    title: "修改密码",
+                    tmplName: "ChangePassword",
+                    okEvent: function (modal) {
+                        if (modal.modal.CheckValidation()) {
+                            $.post(userApi.GetApi("changePwd"), { "": JSON.stringify(modal.modal.GetJson()) })
+                                .done(function (data) {
+                                    ShowMessage(data);
+                                    if (data.IsSuccess) toLogin();
+                                    modal.$ok.prop("disabled", false);
+                                }
+                                );
+                        }
+                    },
+                });
+            $("#btnChangePwd").on("click", function () {
+                passwordModal.modal.ResetForm();
+                passwordModal.Show();
+            });
+
+            $("#langluge_CN").on("click", function () {
+                $.post("/api/admin/ChangeLanCN", function () {
+                    window.location.reload();
+                })
+            });
+            $("#langluge_EN").on("click", function () {
+                $.post("/api/admin/ChangeLanEN", function () {
+                    window.location.reload();
+                })
+            });
+        });
+</script>

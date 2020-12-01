@@ -1,0 +1,26 @@
+﻿<div class="zqui-table__info">
+    共<span>{{>PageCount}}</span>页&nbsp;&nbsp;&nbsp; 每页
+    <span>{{>PageSize}}</span>条记录&nbsp;&nbsp;&nbsp; 共
+    <span>{{>Count}}</span>条记录
+</div>
+<div class="zqui-table__pager">
+    <ul class="pagination">
+        <!--        <li class="zqui-pager__item zqui-pager-prev">
+                    <a href="#"><i class="icon icon-angle-left"></i></a>
+                </li>-->
+        {{for Pages}}
+        {{if isSelect}}
+        <li class="paginate_button active">
+            <a class="page-link" page="{{>index}}">{{>title}}</a>
+        </li>
+        {{else}}
+        <li class="paginate_button">
+            <a class="onPage page-link" data-page="{{>index}}">{{>title}}</a>
+        </li>
+        {{/if}}
+        {{/for}}
+        <!--        <li class="zqui-pager__item zqui-pager-next">
+                    <a href="#" title="Next"><i class="icon icon-angle-right"></i></a>
+                </li>-->
+    </ul>
+</div>

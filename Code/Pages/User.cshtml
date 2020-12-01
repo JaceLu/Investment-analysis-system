@@ -1,0 +1,39 @@
+﻿@page
+@{
+    var _ = new AdminPage<User>(ViewContext).SetPage("73c706cf-ff5d-404a-9c6d-06e7a0e68f94", "用户管理", "");
+}
+@section head{
+    <script type="text/javascript">
+     var tool;
+        $(function () {
+            var tool = new Sail.RazorPage("用户管理", "@_.ApiName", "@_.Id");
+            tool.CreatePage({
+                titles: ["账号", "用户名", "注册手机", "注册时间"],
+            }).Query(1);
+        });
+    </script>
+}
+
+<tmpl id="listTmpl">
+    <tr>
+        <td>
+            <a class="btnView">{{:LoginId}}</a>
+        </td>
+        <td>{{:UserName}}</td>
+        <td>{{:Phone}}</td>
+        <td>{{ToDateTime2:CreateTime}}</td>
+    </tr>
+</tmpl>
+
+<tmpl id="viewTmpl">
+    <div Element="@(_.Create(v => v.LoginId))"></div>
+    <div Element="@(_.Create(v => v.UserName))"></div>
+    <div Element="@(_.Create(v => v.Phone))"></div>
+    <div Element="@(_.Create(v => v.CreateTime))"></div>
+</tmpl>
+
+<toolbar key="输入用户名/账号">
+</toolbar>
+
+<partial name="PageList" view-data="_.ViewParam(new { NoAdd =true})" />
+<partial name="PageDetail" />

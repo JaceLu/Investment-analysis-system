@@ -1,0 +1,59 @@
+﻿@page
+@{
+    var itemId = this.Request.Query["menuId"].ToString();
+
+    var _ = new AdminPage<Dict>(ViewContext);
+    _.SetPage(itemId, "展馆管理", "");
+    var isCanAdd = !_.CanOperation(itemId);
+}
+@section head{
+    <script type="text/javascript">
+        var tool;
+        $(function () {
+            var tool = new Sail.RazorPage("展馆管理","@_.ApiName", "@_.Id");
+            tool.CreatePage({
+                titles: [ "名称", "状态", "排序号", "操作"],
+                handleName: "/api/dict/GetInfoType"
+            }).Query(1);
+
+              tool.PreSave = function ($form, data) {
+                data.Language = "@I18N.CurrentWEBLanguage.ToInt()";
+                return data;
+            };
+        })
+    </script>
+}
+<tmpl id="listTmpl">
+    <tr>
+        <td> {{>Name}}</td>
+        <td>{{:~ToDisabledLabel(!Status)}}</td>
+        <td> {{>OrderByNo}}</td>
+        <td>
+            @if (_.CanOperation(itemId, OperationWay.编辑))
+            {
+                <a class="zqui-text_primary m_r_10 btnEdit btnEdit" title="编辑"><i class="icon icon-lg icon-edit"></i></a>
+            }
+            {{if Status==1}}
+            <a class="zqui-text_success btnAct" data-act="enable" title="启用"><i class="icon icon-lg icon-play"></i></a>
+            {{else}}
+            <a class="zqui-text_danger btnAct" data-act="Disable" title="停用"><i class="icon icon-lg icon-stop"></i></a>
+            {{/if}}
+        </td>
+    </tr>
+</tmpl>
+<tmpl id="modalTmpl">
+    <div class="zqui-form">
+        <input type="hidden" name="type" data-defaultvalue="@DictType.展馆" />
+        <input type="text" Element="@(_.Create(v => v.Name))" />
+        <input type="text" Element="@(_.Create(v => v.OrderByNo))" />
+    </div>
+</tmpl>
+
+<toolbar key="请输入名称">
+    <input type="hidden" name="type" data-defaultvalue="@DictType.展馆" />
+    <select name="status" filter options="@typeof(InfoStatus).EnumList("请选择状态","-1")"></select>
+</toolbar>
+
+<partial name="PageList" view-data="@_.ViewParam(new { NoAdd = isCanAdd })" />
+<partial name="PageDetail" />
+

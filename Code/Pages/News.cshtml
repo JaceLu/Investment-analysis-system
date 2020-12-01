@@ -1,0 +1,364 @@
+﻿@page
+@{
+    var type = this.Request.Query["type"].ToString().ToInt();
+    var itemId = this.Request.Query["menuId"].ToString();
+    var title = this.Request.Query["title"].ToString();
+    var _ = new AdminPage<News>(ViewContext);
+    var category = new AdminPage<Category>(ViewContext);
+    _.SetPage(itemId, title, "");
+    var isCanAdd = !_.CanOperation(itemId);
+}
+@section head{
+    <link href="~/Content/css/select2.min.css" rel="stylesheet" />
+<style>
+    .zqui-tree .zqui-tree.active {
+        display: block;
+    }
+</style>
+    <script src="~/Scripts/other/jquery.uploadifive.js"></script>
+    <script src="~/Scripts/datepicker/WdatePicker.js"></script>
+    <script src="~/Scripts/customs/treeLoad.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var RenderApi = (function () {
+                function RenderApi() {
+                    var that = this;
+                    that.Category = "";
+                    that.tool =new Sail.RazorPage("@title", "@_.ApiName", "@_.Id");
+                    this.initTree();
+                    this.initModal();
+                    this.initPage();
+                    that.tool
+                        .on("after.Add", function () {
+                            if (!that.Category) {
+                                ShowError("请选择栏目节点！");
+                                $("#btnCancel").click();
+                            }
+                          
+                        })
+                        .on("after.Edit", function (e, data) {
+                            if (data.ImageUrl) {
+                                $("#ImageUrlModalId").attr("src", data.ImageUrl);
+                            }
+
+                            if (data.IsOutUrl) {
+                                $("#OutUrl").parent().parent().attr("style", "display:block;");
+                                $("#Content").parent().parent().attr("style", "display:none;");
+                            } else {
+                                $("#OutUrl").parent().parent().attr("style", "display:none;");
+                                $("#Content").parent().parent().attr("style", "display:block;");
+                            }
+                        })
+
+                    that.tool.PreSave = function (form, data) {
+                        data.Category = that.Category;
+                        data.Language = "@I18N.CurrentWEBLanguage.ToInt()";
+                        return data;
+                    }
+                    $("#ImageUrlTrigger").iconUpload();
+                }
+                RenderApi.prototype._initEvents = function () {
+                    var that = this;
+                    var _loop_1 = function (k) {
+                        var item = k;
+                        var act = that._events[k];
+
+                        $("#treeList").on("click", item, function (e) {
+                            //this_1.$treeList.on("click", item, function (e) {
+                            return that._events[item].call(this, $(this).data("id"));
+                        });
+                    };
+                    for (var k in this._events) {
+                        _loop_1(k);
+                    }
+                };
+                //初始化树
+                RenderApi.prototype.initTree = function () {
+                    var that = this;
+                    that.Category = $("#treeList .treeNode:eq(0)").addClass("active").data("id");
+
+                    that._events = {
+                        "a.btnEdit": function (data) {
+                            that.QueryData(data, function (data) {
+                                that.aModalEl.ResetForm();
+                                that.aModalEl.find(".modal-title").text("编辑栏目");
+                                that.aModalEl.ItemBinder(data);
+                                that.aModal.Show();
+
+                            });
+                            return false;
+                        },
+                        "a.btnAdd":function (data) {
+                            that.aModalEl.ResetForm();
+                            that.aModalEl.find(".modal-title").text("添加栏目");
+                            that.aModalEl.find("#ParentId").val(data);
+                            that.aModal.Show();
+                            return false;
+                        },
+                        "a.btnRemove":function (data) {
+                            if (!confirm("是否确定删除?"))
+                                return;
+                            $.post("/api/Category/DeleteCategory?id=" + data,function (res) {
+                                    ShowMessage(res, "删除成功！");
+                                    if (res.IsSuccess) {
+                                        window.location.reload();
+                                        return false;
+                                    }
+                                });
+                            }
+                    };
+
+                    that._initEvents();
+
+                    $("#treeList .treeNode").on("click", function () {
+                        $("#treeList .treeNode").removeClass("active");
+                        that.Category = $(this).data("id");
+                        $(this).addClass("active");
+                        that.renderPage();
+                    })
+                }
+                //绑定数据
+                RenderApi.prototype.bindData = function (target, data) {
+                    var arr = Object.entries(data);
+                    for (var i = 0; i < arr.length; i++) {
+                        target.data(arr[i][0], arr[i][1]);
+                    }
+                    return target;
+                }
+                //初始化弹出框
+                RenderApi.prototype.initModal = function () {
+                    var that = this;
+                    that.aModal = new Sail.Modal(null, {
+                        title: "添加菜单",
+                        tmplName: "#archivesModalTmpl",
+                        okEvent: function (modal) {
+                            if (!modal.modal.CheckValidation()) {
+                                MsgBox.Error("请确认所有必填项都已填写且所有内容都已正确填写");
+                                return;
+                            }
+                            that.saveNodeToServer(modal);
+                        },
+                        init: null,
+                        cssClass: ""
+                    });
+                    that.aModalEl = this.aModal.modal;
+                }
+              
+                    //初始化渲染
+                RenderApi.prototype.initPage = function () {
+                    var that = this;
+                    that.tool.CreatePage({
+                        handleName: "/api/News/GetNewsList",
+                        titles: ["标题", "作者", "时间", "排序", "操作"],
+                        getPostKey: function () {
+                            var data = $("#toolbar").GetJson();
+                            data.categoryId = that.Category;
+                            data.type = @type;
+                            return data;
+                        },
+                    }).Query(1);
+                }
+                RenderApi.prototype.QueryData = function (id,callback) {
+                    $.get("/api/category/QueryData?id=" + id,
+                        function (res) {
+                            callback(res.Data);
+                        });
+                }
+                //在初始化后可使用, 渲染图纸
+                RenderApi.prototype.renderPage = function () {
+                    this.tool.Page.Query(1);
+                };
+                //将此节点保存至Server
+                RenderApi.prototype.saveNodeToServer = function () {
+                    var that = this;
+                    var formData = that.aModalEl.GetJson();
+                    var id = that.aModalEl.find("#Id").val();
+                    $.post("/api/category/CreateChild?id=" + id,
+                        { "": JSON.stringify(formData) },
+                        function (res) {
+                            ShowMessage(res,
+                                "保存成功",
+                                function () {
+                                    window.location.reload();
+                                });
+                        });
+                }
+                return RenderApi;
+            })();
+            var render = new RenderApi();
+
+            $("#IsOutUrl").click(function () {
+                var isCheck = $("input[type='checkbox']").is(':checked');
+                if (isCheck) {
+                    $("#OutUrl").parent().parent().attr("style", "display:block;");
+                    $("#Content").parent().parent().attr("style", "display:none;");
+                } else {
+                    $("#OutUrl").parent().parent().attr("style", "display:none;");
+                    $("#Content").parent().parent().attr("style", "display:block;");
+                }
+            });
+
+            $("#btnAdd").click(function () {
+                $("#OutUrl").parent().parent().attr("style", "display:none;");
+                $("#Content").parent().parent().attr("style", "display:block;");
+            });
+    });
+    </script>
+}
+<tmpl id="modalTmpl">
+    <textarea type="text" Element="@(_.Create(v => v.Title))"></textarea>
+    <formGroup Element="@(_.Create(x => x.ImageUrl))">
+        <div class="zqui-upload zqui-upload_img">
+            <img id="ImageUrlModalId" data-defaultvalue="/Content/images/default-img.jpg" />
+        </div>
+        <div class="zqui-upload zqui-m_0" id="ImageUrlTrigger">
+            <input type="hidden" id="ImageUrl" />
+        </div>
+    </formGroup>
+
+    <input type="text" Element="@(_.Create(v => v.Author))" />
+    @if (type == 1)
+    {
+        <input type="text" Element="@(_.Create(v => v.OrderByNo))" />
+    }
+    <input Element="@(_.Create(v => v.PublishTime))" />
+    <textarea type="text" Element="@(_.Create(v => v.Description))"></textarea>
+
+    <formGroup Element="@(_.Create(v => v.IsOutUrl))" >
+        <checkbox nogroup Element="@(_.Create(v => v.IsOutUrl,"是"))" has-group="false"></checkbox>
+    </formGroup>
+
+    @if (type == 0)
+    {
+        <input type="text" Element="@(_.Create(v => v.OutUrl))"  />
+    }
+    <textarea group Element="@(_.Create(v => v.Content))" class="richedit" data-item="Content" ></textarea>
+</tmpl>
+
+<tmpl id="listTmpl">
+    <tr>
+        <td><a class="btnView">{{:Title}}</a></td>
+        <td>{{:Author}}</td>
+        <td>{{ToDate:PublishTime}}</td>
+        <td>{{:OrderByNo}}</td>
+        <td style="width: 90px">
+            @if (_.CanOperation(itemId, OperationWay.编辑))
+            {
+                <a class="zqui-text_primary m_r_10 btnEdit btnEdit" title="编辑"><i class="icon icon-lg icon-edit"></i></a>
+            }
+            @if (_.CanOperation(itemId, OperationWay.删除))
+            {
+                <a class="zqui-text_danger m_r_10 btnRemove" title="删除"><i class="icon icon-lg icon-trash"></i></a>
+            }
+        </td>
+    </tr>
+</tmpl>
+
+<tmpl id="viewTmpl">
+    <div data-tmpl="inline">
+        <article class="zqui-article">
+            <h1 class="zqui-text_center">{{:Title}}</h1>
+            <h1 class="zqui-text_center">{{:Author}} {{ToDate:PublishTime}}</h1>
+            <h3 class="zqui-text_center">{{:Description}}</h3>
+            <img src="{{:ImgUrl}}" />
+            <section>
+                {{:Content}}
+            </section>
+        </article>
+    </div>
+</tmpl>
+
+<toolbar key="请输入标题">
+    <input type="text" id="startDay" filter class="date" placeholder="起始时间 " />
+    <input type="text" id="endDay" filter class="date" placeholder="截止时间" />
+</toolbar>
+
+<div class="zqui-portlet zqui-portlet_light">
+    <div class="zqui-portlet__bd">
+        <div class="zqui-row">
+            <div class="col-sm-3">
+                <div class="zqui-portlet zqui-portlet_light">
+                    <div class="zqui-portlet__hd">
+                        <div class="zqui-caption zqui-return zqui-title detailTitle">
+                            <span>栏目</span>
+                        </div>
+                    </div>
+                    <div class="zqui-portlet__bd mainForm">
+                        <div class="form-body zqui-form" style="max-height: 100%; overflow:auto;height:600px;">
+                            <div class="tree">
+                                <ul class="zqui-tree" id="treeList">
+                                    @foreach (var item in Category.CategorysByWeb(type))
+                                    {
+                                        if (type == 0)
+                                        {
+                                            <li class="divtree zqui-tree__item" >
+                                                <div class="divtree zqui-tree__content @(item.SubItem.Any()?"":"treeNode")">
+                                                    <div class="zqui-tree__bd ">
+                                                        <i class="zqui-text_warning icon icon-folder"></i>@item?.Name
+                                                    </div>
+                                                    <div class="zqui-tree__ft">
+                                                          <a class="btnAdd" style="float: right; margin-right: 5px; color: #333;" data-id="@item?.Id"><i class="icon icon-plus" title="添加" ></i></a>
+                                                    </div>
+                                                </div>
+                                                <ul class="zqui-tree active">
+                                                    @foreach (var sedtem in item.SubItem)
+                                                    {
+                                                        <li class="divtree zqui-tree__item" >
+                                                            <div class="divtree zqui-tree__content treeNode" data-id="@sedtem?.Id">
+                                                                <div class="zqui-tree__bd " >
+                                                                    @*<div class="zqui-tree__bd treeNode" data-id="@sedtem?.Id">*@
+                                                                        <i class="zqui-text_warning icon icon-folder"></i>@sedtem?.Name
+                                                                    </div>
+                                                                <div class="zqui-tree__ft">
+
+                                                                    @if (_.CanOperation(itemId, OperationWay.删除))
+                                                                    {
+                                                                        <a class="btnRemove" style="float: right; color: #333;" data-id="@sedtem?.Id"><i class="icon icon-remove" title="删除"></i></a>
+                                                                    }
+                                                                    @if (_.CanOperation(itemId, OperationWay.编辑))
+                                                                    {
+                                                                        <a class="btnEdit" style="float: right; margin-right: 5px; color: #333;" data-id="@sedtem?.Id">
+                                                                        <i class="icon icon-edit" title="编辑"></i></a>
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="divtree zqui-tree__item" >
+                                                <div class="divtree zqui-tree__content" >
+                                                    <div class="zqui-tree__bd treeNode" data-id="@item?.Id">
+                                                        <i class="zqui-text_warning icon icon-folder"></i>@item?.Name
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+                                    }
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <partial name="PageList" view-data="@_.ViewParam(new { NoAdd=isCanAdd})" />
+                <partial name="PageDetail" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<tmpl id="archivesModalTmpl">
+    <div class="zqui-form">
+        <input type="hidden" id="ParentId" data-defaultvalue="" />
+        <input type="hidden" id="Id" data-defaultvalue="" />
+        <input type="text" Element="@(category.Create(v => v.Name,"名称"))" />
+        @*<input type="text" Element="@(category.Create(v => v.Code))" />*@
+        <input type="text" Element="@(category.Create(v => v.OrderByNo))" />
+    </div>
+</tmpl>
